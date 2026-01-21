@@ -5,10 +5,11 @@ from src.db.query import read_db_by_col, write_csv_to_db
 
 
 class DataAnalyze:
-    def __init__(self, file_path, table_name, dtypes):
+    def __init__(self, file_path, table_name, dtypes, path):
         self.file_path = file_path
         self.table_name = table_name
         self.dtypes = dtypes
+        self.path = path
 
     def extract(self):
         self.data = load_data(self.file_path)
@@ -21,15 +22,15 @@ class DataAnalyze:
 
     def transform(self):
         self.data = clean_data(self.data)
-        return self.data
+        return self
 
-    # def load_to_db(self):
-    #     existing_dates = set(read_db_by_col("date", self.table_name)["date"])
-    #     new_rows = self.data[~self.data["date"].isin(existing_dates)]
-
-    #     if not new_rows.empty:
-    #         write_csv_to_db(new_rows)
-    #     return len(new_rows)
+    def save_cleaned(self):
+        self.data.to_csv(
+            f"{self.path}",
+            index=False,
+        )
+        return self
 
     def run(self):
-        return self.extract().validate().transform()
+        self.extract().validate().transform().save_cleaned()
+        return self.data
