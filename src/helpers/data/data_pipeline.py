@@ -5,14 +5,13 @@ from src.db.query import read_db_by_col, write_csv_to_db
 
 
 class DataAnalyze:
-    def __init__(self, file_path, table_name, dtypes, path):
-        self.file_path = file_path
-        self.table_name = table_name
+    def __init__(self, raw_path, dtypes, clean_path):
+        self.raw_path = raw_path
         self.dtypes = dtypes
-        self.path = path
+        self.clean_path = clean_path
 
     def extract(self):
-        self.data = load_data(self.file_path)
+        self.data = load_data(self.raw_path)
         return self
 
     def validate(self):
@@ -26,7 +25,7 @@ class DataAnalyze:
 
     def save_cleaned(self):
         self.data.to_csv(
-            f"{self.path}",
+            f"{self.clean_path}",
             index=False,
         )
         return self

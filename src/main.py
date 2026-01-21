@@ -1,7 +1,8 @@
 from helpers.data.data_pipeline import DataAnalyze
 from helpers.features.features import FeatureEngineering
 
-path = "/Users/negarnasiri/Documents/python/stock_analysis/data/raw/OCFT.csv"
+raw_path = "/Users/negarnasiri/Documents/python/stock_analysis/data/raw/OCFT.csv"
+clean_path = "/Users/negarnasiri/Documents/python/stock_analysis/data/processed/OCFT_clean.csv"
 types = {
     "Date": "object",
     "Open": "float64",
@@ -11,14 +12,9 @@ types = {
     "Adj Close": "float64",
     "Volume": "int64",
 }
-table_name = "daily_prices"
 
 if __name__ == "__main__":
-    cleaned_data = DataAnalyze(path, table_name, types)
+    cleaned_data = DataAnalyze(raw_path, types,clean_path)
     processed_data = cleaned_data.run()
     analytic_data = FeatureEngineering(processed_data, 15, 5)
     df = analytic_data.run()
-    df.to_csv(
-        "/Users/negarnasiri/Documents/python/stock_analysis/data/processed/analytical_data.csv",
-        index=False,
-    )
