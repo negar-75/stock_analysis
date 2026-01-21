@@ -1,0 +1,24 @@
+from sqlalchemy import Column, Integer, Date, Numeric, BigInteger, UniqueConstraint
+
+from sqlalchemy.orm import declarative_base
+
+
+# def create_col(col:str,table_name:str,engine):
+
+
+Base = declarative_base()
+
+
+class DailyPrices(Base):
+    __tablename__ = "daily_prices"
+
+    id = Column(Integer, primary_key=True)
+    date = Column(Date, nullable=False, index=True)
+    open = Column(Numeric(10, 4), nullable=False)
+    high = Column(Numeric(10, 4), nullable=False)
+    low = Column(Numeric(10, 4), nullable=False)
+    close = Column(Numeric(10, 4), nullable=False)
+    adj_close = Column(Numeric(10, 4), nullable=False)
+    volume = Column(BigInteger, nullable=False)
+
+    __table_args__ = (UniqueConstraint("date", name="uq_daily_prices_date"),)
