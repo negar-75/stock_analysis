@@ -1,4 +1,4 @@
-from src.data.data_validation import (
+from src.helpers.data.data_validation import (
     required_columns_exist,
     check_column_type,
     check_corrupted_values,
@@ -19,11 +19,10 @@ def test_required_columns_exist_right_input():
             "High": [15],
             "Low": [11.9],
             "Close": [13],
-            "Adj Close": [13.1],
             "Volume": [200],
         }
     )
-    col_list = ["Date", "High", "Low", "Close", "Adj Close", "Volume", "Open"]
+    col_list = ["Date", "High", "Low", "Close", "Volume", "Open"]
 
     result = required_columns_exist(data, col_list)
 
@@ -42,10 +41,9 @@ def test_required_columns_exist_wrong_input():
             "High": [15],
             "Low": [11.9],
             "Close": [13],
-            "Adj Close": [13.1],
         }
     )
-    col_list = ["Date", "High", "Low", "Close", "Adj Close", "Volume"]
+    col_list = ["Date", "High", "Low", "Close", "Volume"]
 
     result = required_columns_exist(data, col_list)
 
@@ -64,7 +62,6 @@ def test_check_column_type_right_input():
             "High": [15.0],
             "Low": [11.9],
             "Close": [13.0],
-            "Adj Close": [13.1],
             "Volume": [200],
         }
     )
@@ -74,7 +71,6 @@ def test_check_column_type_right_input():
         "High": "float64",
         "Low": "float64",
         "Close": "float64",
-        "Adj Close": "float64",
         "Volume": "int64",
     }
 
@@ -94,7 +90,6 @@ def test_check_column_type_wrong_input():
             "High": ["15.0"],
             "Low": [11.9],
             "Close": [13.0],
-            "Adj Close": [13.1],
             "Volume": [200],
         }
     )
@@ -104,7 +99,6 @@ def test_check_column_type_wrong_input():
         "High": "float64",
         "Low": "float64",
         "Close": "float64",
-        "Adj Close": "float64",
         "Volume": "int64",
     }
 
@@ -125,7 +119,6 @@ def test_check_corrupted_values_right_input():
             "High": [15.0],
             "Low": [11.9],
             "Close": [13.0],
-            "Adj Close": [13.1],
             "Volume": [200],
         }
     )
@@ -145,7 +138,6 @@ def test_check_corrupted_values_wrong_input():
             "High": [None],
             "Low": [11.9],
             "Close": [13.0],
-            "Adj Close": [-13.1],
             "Volume": [200],
         }
     )
@@ -165,7 +157,6 @@ def test_check_logical_consistency_right_input():
             "High": [15.0],
             "Low": [11.9],
             "Close": [13.0],
-            "Adj Close": [13.1],
             "Volume": [200],
         }
     )
@@ -186,7 +177,6 @@ def test_check_logical_consistency_wrong_input():
             "High": [12.0],
             "Low": [11.9],
             "Close": [13.0],
-            "Adj Close": [13.1],
             "Volume": [200],
         }
     )

@@ -1,22 +1,26 @@
-from helpers.data.data_pipeline import DataAnalyze
-from helpers.features.features import FeatureEngineering
+from src.ingestions.market_api import Ingestion
+from src.pipeline import run_pipeline
+from src.db.connection import get_engine
 
-RAW_PATH = "data/raw/OCFT.csv"
-RAW_PATH = "data/processed/OCFT_clean.csv"
-ANALYTIC_PATH = "data/processed/OCFT_analytic.csv"
+
+START_DATE = "2025-01-01"
+END_DATE = "2026-01-01"
+STOCK = "MSFT"
 
 DTYPES = {
-    "Date": "object",
+    "Date": "datetime64[ns, America/New_York]",
     "Open": "float64",
     "High": "float64",
     "Low": "float64",
     "Close": "float64",
-    "Adj Close": "float64",
     "Volume": "int64",
 }
 
 if __name__ == "__main__":
-    cleaned_data = DataAnalyze(RAW_PATH, DTYPES,RAW_PATH)
-    processed_data = cleaned_data.run()
-    analytic_data = FeatureEngineering(processed_data, 15, 5)
-    df = analytic_data.run()
+    engine = get_engine("DB_NAME")
+    try:
+        raw_data = Ingestion(START_DATE, END_DATE, STOCK)
+        inserted_rows_to_db = run_pipeline(DTYPES, raw_data.run(), engine)
+        print(f"{inserted_rows_to_db} rows has been inserted into daily price table")
+    finally:
+        engine.dispose()

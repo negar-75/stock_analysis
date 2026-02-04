@@ -27,6 +27,7 @@ def required_columns_exist(data: pd.DataFrame, columns_list: list) -> bool:
     """
     for col in columns_list:
         if col not in data.columns:
+            print(col)
             print("column existance issue")
             return False
     return True
@@ -45,7 +46,9 @@ def check_column_type(data: pd.DataFrame, columns_type: dict) -> bool:
     """
     for col in data.columns:
         if data[f"{col}"].dtypes != columns_type[f"{col}"]:
-            print(f"data type is wrong in column {col}")
+            print(
+                f"data type is wrong in column {col}, the current type is {data[col].dtypes}"
+            )
             return False
     return True
 
@@ -82,8 +85,8 @@ def check_logical_consistency(data: pd.DataFrame) -> bool:
     Returns:
         bool: True if all rows are logically consistent, False otherwise.
     """
-    lowest = data[["Open", "Close", "High", "Low", "Adj Close"]].min(axis=1)
-    highest = data[["Open", "Close", "High", "Low", "Adj Close"]].max(axis=1)
+    lowest = data[["Open", "Close", "High", "Low"]].min(axis=1)
+    highest = data[["Open", "Close", "High", "Low"]].max(axis=1)
 
     if not (lowest == data["Low"]).all():
         print("Low is not the the minimum price in the row")

@@ -1,8 +1,8 @@
-"""create daily prices table
+"""message
 
-Revision ID: 5ccb1d906387
+Revision ID: 5746511c2d91
 Revises:
-Create Date: 2026-01-14 14:46:47.225815
+Create Date: 2026-01-26 12:23:40.319942
 
 """
 
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "5ccb1d906387"
+revision: str = "5746511c2d91"
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -32,6 +32,24 @@ def upgrade() -> None:
         sa.Column("close", sa.Numeric(precision=10, scale=4), nullable=False),
         sa.Column("adj_close", sa.Numeric(precision=10, scale=4), nullable=False),
         sa.Column("volume", sa.BigInteger(), nullable=False),
+        sa.Column("daily_return", sa.Numeric(precision=10, scale=4), nullable=True),
+        sa.Column("log_return", sa.Numeric(precision=10, scale=4), nullable=True),
+        sa.Column(
+            "rolling_volatility", sa.Numeric(precision=10, scale=4), nullable=True
+        ),
+        sa.Column("moving_average", sa.Numeric(precision=10, scale=4), nullable=True),
+        sa.Column("absolute_range", sa.Numeric(precision=10, scale=4), nullable=False),
+        sa.Column(
+            "relative_range_on_open", sa.Numeric(precision=10, scale=4), nullable=False
+        ),
+        sa.Column(
+            "relative_range_on_close", sa.Numeric(precision=10, scale=4), nullable=False
+        ),
+        sa.Column(
+            "open_close_range", sa.Numeric(precision=10, scale=4), nullable=False
+        ),
+        sa.Column("upper_shadow", sa.Numeric(precision=10, scale=4), nullable=False),
+        sa.Column("ower_shadow", sa.Numeric(precision=10, scale=4), nullable=False),
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("date", name="uq_daily_prices_date"),
     )

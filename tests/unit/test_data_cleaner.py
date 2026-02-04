@@ -1,6 +1,13 @@
 import pandas as pd
 import pytest
-from src.data.data_cleaner import *
+from src.helpers.data.data_cleaner import (
+    convert_to_datetime,
+    sort_by_column,
+    drop_duplicates,
+    col_name_normalization,
+    col_ordering,
+    clean_data,
+)
 
 
 def test_convert_to_datetime_right_input():
@@ -58,11 +65,9 @@ def test_drop_duplicates_wrong_input():
 
 
 def test_col_name_normalization_right_input():
-    data = pd.DataFrame(
-        {"Date": ["2020-01-03", "2020-01-01", "2020-01-02"], "adj close": [10, 12, 11]}
-    )
+    data = pd.DataFrame({"Date": ["2020-01-03", "2020-01-01", "2020-01-02"]})
     result = col_name_normalization(data)
-    assert result == ["date", "adj_close"]
+    assert result == ["date"]
 
 
 def test_col_name_normalization_wrong_input():
@@ -105,7 +110,6 @@ def test_clean_data_right_input():
             "High": [15, 14, 15],
             "Low": [9, 8, 9],
             "Close": [13, 11, 13],
-            "Adj Close": [13, 11, 13],
             "Volume": [1000, 1500, 1000],
             "Extra": ["x", "y", "z"],  # extra column that should be removed
         }
@@ -117,11 +121,10 @@ def test_clean_data_right_input():
         "high",
         "low",
         "close",
-        "adj_close",
         "volume",
     ]
     assert len(result) == 2
-    assert result["date"].tolist() == list(pd.to_datetime(["2020-01-01", "2020-01-02"]))
-
-
-test_clean_data_right_input()
+    print(result["date"].tolist())
+    assert result["date"].tolist() == list(
+        pd.to_datetime(["2020-01-01", "2020-01-02"]).date
+    )  #
