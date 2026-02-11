@@ -1,8 +1,6 @@
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 import math
 from datetime import date
-from fastapi.exceptions import HTTPException
-from fastapi import status
 from decimal import Decimal
 
 
