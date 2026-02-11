@@ -1,7 +1,5 @@
-from fastapi import FastAPI, Depends, HTTPException, Query
-from datetime import date
+from fastapi import FastAPI, Depends, Query
 from typing import Annotated
-from math import ceil
 from sqlalchemy.orm import Session
 from src.api.dependencies.db import get_db
 from src.api.schemas import PaginatedDailyPrices, DailyPriceInput

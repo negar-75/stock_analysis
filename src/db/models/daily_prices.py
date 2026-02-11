@@ -11,9 +11,6 @@ from sqlalchemy import (
 from sqlalchemy.orm import declarative_base
 
 
-# def create_col(col:str,table_name:str,engine):
-
-
 Base = declarative_base()
 
 

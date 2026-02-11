@@ -1,7 +1,5 @@
 from sqlalchemy.orm import Session
 from math import ceil
-import math
-import pandas as pd
 import logging
 from src.repositories.price_repository import PriceRepository
 from src.services.price_ingestion_service import PriceIngestionService

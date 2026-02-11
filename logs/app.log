@@ -46,3 +46,18 @@
 2026-02-11 16:16:09,501 | INFO | src.services.price_query_service | Ingestion summary | ticker=MSFT | fetched=0 | inserted=0
 2026-02-11 16:16:09,510 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
 2026-02-11 16:16:09,513 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
+2026-02-11 16:23:36,674 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-01 → 2025-01-31 | limit=10 | offset=0
+2026-02-11 16:23:36,830 | INFO | src.services.price_query_service | Missing data detected | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1)), (datetime.date(2025, 1, 31), datetime.date(2025, 1, 31))]
+2026-02-11 16:23:36,832 | INFO | src.services.price_ingestion_service | Ingestion started | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1)), (datetime.date(2025, 1, 31), datetime.date(2025, 1, 31))]
+2026-02-11 16:23:36,833 | INFO | src.services.price_ingestion_service | Fetching market data | ticker=MSFT | 2025-01-01 → 2025-01-01
+2026-02-11 16:23:36,834 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-01 to 2025-01-01
+2026-02-11 16:23:37,447 | ERROR | yfinance | $MSFT: possibly delisted; no price data found  (1d 2025-01-01 -> 2025-01-01)
+2026-02-11 16:23:37,455 | INFO | src.services.price_ingestion_service | No data | ticker=MSFT | 2025-01-01 → 2025-01-01
+2026-02-11 16:23:37,458 | INFO | src.services.price_ingestion_service | Fetching market data | ticker=MSFT | 2025-01-31 → 2025-01-31
+2026-02-11 16:23:37,463 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-31 to 2025-01-31
+2026-02-11 16:23:37,581 | ERROR | yfinance | $MSFT: possibly delisted; no price data found  (1d 2025-01-31 -> 2025-01-31)
+2026-02-11 16:23:37,585 | INFO | src.services.price_ingestion_service | No data | ticker=MSFT | 2025-01-31 → 2025-01-31
+2026-02-11 16:23:37,587 | INFO | src.services.price_ingestion_service | Ingestion finished | ticker=MSFT | fetched=0 | inserted=0 | status=No new data
+2026-02-11 16:23:37,588 | INFO | src.services.price_query_service | Ingestion summary | ticker=MSFT | fetched=0 | inserted=0
+2026-02-11 16:23:37,600 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
+2026-02-11 16:23:37,602 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
