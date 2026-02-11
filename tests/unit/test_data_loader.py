@@ -1,4 +1,4 @@
-from src.helpers.data.data_validation import (
+from src.pipelines.validators.data_validator import (
     required_columns_exist,
     check_column_type,
     check_corrupted_values,

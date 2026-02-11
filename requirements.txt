@@ -1,0 +1,27 @@
+# --- API ---
+fastapi
+uvicorn
+
+# --- Database ---
+sqlalchemy
+psycopg2-binary
+alembic
+
+# --- Data pipeline ---
+pandas
+numpy
+yfinance
+python-dateutil
+pytz
+
+# --- Config ---
+python-dotenv
+
+# --- Testing ---
+pytest
+
+# --- Validation (FastAPI dependency) ---
+pydantic
+
+# Dev formatting / linting
+black

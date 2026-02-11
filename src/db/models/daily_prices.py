@@ -1,4 +1,12 @@
-from sqlalchemy import Column, Integer, Date, Numeric, BigInteger, UniqueConstraint
+from sqlalchemy import (
+    Column,
+    Integer,
+    Date,
+    Numeric,
+    BigInteger,
+    UniqueConstraint,
+    VARCHAR,
+)
 
 from sqlalchemy.orm import declarative_base
 
@@ -14,6 +22,7 @@ class DailyPrices(Base):
 
     id = Column(Integer, primary_key=True)
     date = Column(Date, nullable=False, index=True)
+    ticker = Column(VARCHAR(10), nullable=False)
     open = Column(Numeric(10, 4), nullable=False)
     high = Column(Numeric(10, 4), nullable=False)
     low = Column(Numeric(10, 4), nullable=False)
@@ -30,4 +39,6 @@ class DailyPrices(Base):
     upper_shadow = Column(Numeric(10, 4), nullable=False)
     lower_shadow = Column(Numeric(10, 4), nullable=False)
 
-    __table_args__ = (UniqueConstraint("date", name="uq_daily_prices_date"),)
+    __table_args__ = (
+        UniqueConstraint("ticker", "date", name="uq_daily_prices_ticker_date"),
+    )

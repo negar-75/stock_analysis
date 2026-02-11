@@ -1,0 +1,48 @@
+2026-02-11 16:00:24,941 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=10 | offset=0
+2026-02-11 16:00:25,039 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
+2026-02-11 16:00:25,040 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
+2026-02-11 16:01:37,067 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=3 | offset=0
+2026-02-11 16:01:37,169 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=3
+2026-02-11 16:01:37,170 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/7
+2026-02-11 16:01:49,103 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=10 | offset=0
+2026-02-11 16:01:49,122 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
+2026-02-11 16:01:49,123 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
+2026-02-11 16:02:00,837 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=9 | offset=0
+2026-02-11 16:02:00,846 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=9
+2026-02-11 16:02:00,849 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/3
+2026-02-11 16:02:06,563 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=8 | offset=0
+2026-02-11 16:02:06,658 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=8
+2026-02-11 16:02:06,659 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/3
+2026-02-11 16:02:10,255 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=7 | offset=0
+2026-02-11 16:02:10,260 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=7
+2026-02-11 16:02:10,261 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/3
+2026-02-11 16:02:14,312 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=6 | offset=0
+2026-02-11 16:02:14,320 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=6
+2026-02-11 16:02:14,322 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/4
+2026-02-11 16:02:17,793 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=5 | offset=0
+2026-02-11 16:02:17,798 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=5
+2026-02-11 16:02:17,799 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/4
+2026-02-11 16:02:20,934 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=4 | offset=0
+2026-02-11 16:02:20,940 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=4
+2026-02-11 16:02:20,942 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/5
+2026-02-11 16:03:46,137 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=5 | offset=0
+2026-02-11 16:03:46,144 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=5
+2026-02-11 16:03:46,146 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/4
+2026-02-11 16:15:06,231 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=10 | offset=0
+2026-02-11 16:15:06,324 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
+2026-02-11 16:15:06,325 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
+2026-02-11 16:16:08,746 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-01 → 2025-01-31 | limit=10 | offset=0
+2026-02-11 16:16:08,751 | INFO | src.services.price_query_service | Missing data detected | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1)), (datetime.date(2025, 1, 31), datetime.date(2025, 1, 31))]
+2026-02-11 16:16:08,752 | INFO | src.services.price_ingestion_service | Ingestion started | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1)), (datetime.date(2025, 1, 31), datetime.date(2025, 1, 31))]
+2026-02-11 16:16:08,754 | INFO | src.services.price_ingestion_service | Fetching market data | ticker=MSFT | 2025-01-01 → 2025-01-01
+2026-02-11 16:16:08,756 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-01 to 2025-01-01
+2026-02-11 16:16:09,361 | ERROR | yfinance | $MSFT: possibly delisted; no price data found  (1d 2025-01-01 -> 2025-01-01)
+2026-02-11 16:16:09,363 | INFO | src.services.price_ingestion_service | No data | ticker=MSFT | 2025-01-01 → 2025-01-01
+2026-02-11 16:16:09,364 | INFO | src.services.price_ingestion_service | Fetching market data | ticker=MSFT | 2025-01-31 → 2025-01-31
+2026-02-11 16:16:09,366 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-31 to 2025-01-31
+2026-02-11 16:16:09,491 | ERROR | yfinance | $MSFT: possibly delisted; no price data found  (1d 2025-01-31 -> 2025-01-31)
+2026-02-11 16:16:09,495 | INFO | src.services.price_ingestion_service | No data | ticker=MSFT | 2025-01-31 → 2025-01-31
+2026-02-11 16:16:09,498 | INFO | src.services.price_ingestion_service | Ingestion finished | ticker=MSFT | fetched=0 | inserted=0 | status=No new data
+2026-02-11 16:16:09,501 | INFO | src.services.price_query_service | Ingestion summary | ticker=MSFT | fetched=0 | inserted=0
+2026-02-11 16:16:09,510 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
+2026-02-11 16:16:09,513 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2

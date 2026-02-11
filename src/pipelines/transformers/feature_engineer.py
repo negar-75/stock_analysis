@@ -1,3 +1,9 @@
+"""
+Feature engineering module for stock price data.
+
+Calculates technical indicators and derived metrics.
+"""
+
 import numpy as np
 
 

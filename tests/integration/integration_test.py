@@ -1,6 +1,6 @@
 import pytest
 from src.pipeline import run_pipeline
-from src.db.models import DailyPrices
+from src.db.models.daily_prices import DailyPrices
 import pandas as pd
 from sqlalchemy import func
 

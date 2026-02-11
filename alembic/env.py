@@ -9,7 +9,7 @@ from src.db.config import get_db_url
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-config.set_main_option("sqlalchemy.url", get_db_url())
+config.set_main_option("sqlalchemy.url", get_db_url("DB_NAME"))
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -20,7 +20,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from src.db.models import Base
+from src.db.models.daily_prices import Base
 
 target_metadata = Base.metadata
 

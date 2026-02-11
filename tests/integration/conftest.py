@@ -1,6 +1,6 @@
-from src.db.connection import get_engine, get_db
+from src.db.engine import get_engine, get_db
 import pytest
-from src.db.models import Base
+from src.db.models.daily_prices import Base
 from sqlalchemy import inspect
 
 

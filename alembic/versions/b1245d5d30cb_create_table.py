@@ -1,8 +1,8 @@
-"""message
+"""create table
 
-Revision ID: 5746511c2d91
+Revision ID: b1245d5d30cb
 Revises:
-Create Date: 2026-01-26 12:23:40.319942
+Create Date: 2026-02-05 11:03:47.259309
 
 """
 
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "5746511c2d91"
+revision: str = "b1245d5d30cb"
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -26,11 +26,11 @@ def upgrade() -> None:
         "daily_prices",
         sa.Column("id", sa.Integer(), nullable=False),
         sa.Column("date", sa.Date(), nullable=False),
+        sa.Column("ticker", sa.VARCHAR(length=10), nullable=False),
         sa.Column("open", sa.Numeric(precision=10, scale=4), nullable=False),
         sa.Column("high", sa.Numeric(precision=10, scale=4), nullable=False),
         sa.Column("low", sa.Numeric(precision=10, scale=4), nullable=False),
         sa.Column("close", sa.Numeric(precision=10, scale=4), nullable=False),
-        sa.Column("adj_close", sa.Numeric(precision=10, scale=4), nullable=False),
         sa.Column("volume", sa.BigInteger(), nullable=False),
         sa.Column("daily_return", sa.Numeric(precision=10, scale=4), nullable=True),
         sa.Column("log_return", sa.Numeric(precision=10, scale=4), nullable=True),
@@ -49,9 +49,9 @@ def upgrade() -> None:
             "open_close_range", sa.Numeric(precision=10, scale=4), nullable=False
         ),
         sa.Column("upper_shadow", sa.Numeric(precision=10, scale=4), nullable=False),
-        sa.Column("ower_shadow", sa.Numeric(precision=10, scale=4), nullable=False),
+        sa.Column("lower_shadow", sa.Numeric(precision=10, scale=4), nullable=False),
         sa.PrimaryKeyConstraint("id"),
-        sa.UniqueConstraint("date", name="uq_daily_prices_date"),
+        sa.UniqueConstraint("ticker", "date", name="uq_daily_prices_ticker_date"),
     )
     op.create_index(
         op.f("ix_daily_prices_date"), "daily_prices", ["date"], unique=False

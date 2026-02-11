@@ -1,6 +1,6 @@
 import pandas as pd
 import pytest
-from src.helpers.data.data_cleaner import (
+from src.pipelines.transformers.data_cleaner import (
     convert_to_datetime,
     sort_by_column,
     drop_duplicates,

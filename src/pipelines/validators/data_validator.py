@@ -1,17 +1,10 @@
+"""
+Data validation module for stock price data.
+
+Provides validation functions to ensure data quality before processing.
+"""
+
 import pandas as pd
-
-
-def load_data(file_name: str) -> pd.DataFrame:
-    """
-    Load a CSV file into a pandas DataFrame.
-
-    Args:
-        file_name (str): Path to the CSV file.
-
-    Returns:
-        pd.DataFrame: DataFrame containing the CSV data.
-    """
-    return pd.read_csv(file_name)
 
 
 def required_columns_exist(data: pd.DataFrame, columns_list: list) -> bool:
@@ -27,8 +20,7 @@ def required_columns_exist(data: pd.DataFrame, columns_list: list) -> bool:
     """
     for col in columns_list:
         if col not in data.columns:
-            print(col)
-            print("column existance issue")
+            print(col, "column existance issue")
             return False
     return True
 

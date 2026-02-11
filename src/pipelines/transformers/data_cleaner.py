@@ -102,5 +102,7 @@ def clean_data(data: pd.DataFrame):
     data = sort_by_column(data, "date")
 
     # extra column will be removed in below section
-    data = col_ordering(data, ["date", "open", "high", "low", "close", "volume"])
+    data = col_ordering(
+        data, ["ticker", "date", "open", "high", "low", "close", "volume"]
+    )
     return data
