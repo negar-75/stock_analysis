@@ -2,7 +2,7 @@ import logging
 from typing import Optional
 import pandas as pd
 import yfinance as yf
-from src.core.exceptions import MarketAPIError, NoDataAvailableError
+from src.core.exceptions import  MarketAPIError, NoDataAvailableError
 
 
 logger = logging.getLogger(__name__)
@@ -17,13 +17,6 @@ class Ingestion:
 
     # Fetch from API
     def fetch(self):
-        logger.info(
-            "Fetching %s data from %s to %s",
-            self.ticker,
-            self.start_date,
-            self.end_date,
-        )
-
         try:
             ticker_client = yf.Ticker(self.ticker)
 

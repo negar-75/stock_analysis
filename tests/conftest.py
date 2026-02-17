@@ -1,18 +1,37 @@
+from src.db.session import get_engine
 import pytest
-from src.pipeline import run_pipeline
-from src.db.models.daily_prices import DailyPrices
+from src.db.models.daily_prices import Base
+from sqlalchemy import inspect
+from sqlalchemy.orm import sessionmaker
 import pandas as pd
-from sqlalchemy import func
 
 
-DTYPES = {
-    "Date": "datetime64[ns]",
-    "Open": "float64",
-    "High": "float64",
-    "Low": "float64",
-    "Close": "float64",
-    "Volume": "int64",
-}
+
+
+
+
+@pytest.fixture(scope="session")
+def test_engine():
+    engine = get_engine("DB_NAME_TEST")
+    yield engine
+    engine.dispose()
+
+
+@pytest.fixture
+def test_setup_db(test_engine):
+    Base.metadata.create_all(bind=test_engine)
+    yield
+    Base.metadata.drop_all(bind=test_engine)
+
+
+@pytest.fixture
+def test_setup_session(test_engine, test_setup_db):
+    TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
+    session = TestingSessionLocal()
+    try:
+        yield session
+    finally:
+        session.close()
 
 
 @pytest.fixture
@@ -20,9 +39,10 @@ def get_mock_price_data():
     """Factory that returns fresh DataFrame each call"""
 
     def _make_data():
-        return pd.DataFrame(
+        df = pd.DataFrame(
             {
                 "Date": pd.date_range("2025-01-01", periods=10, freq="D"),
+                "Ticker": ["AAPL"] * 10,
                 "Open": [
                     100.0,
                     102.0,
@@ -85,32 +105,7 @@ def get_mock_price_data():
                 ],
             }
         )
+        df["Date"] = pd.to_datetime(df["Date"]).dt.tz_localize("America/New_York")
+        return df
 
     return _make_data
-
-
-def test_pipeline_inserted_rows(get_mock_price_data, test_engine, test_setup_session):
-    inserted_rows = run_pipeline(DTYPES, get_mock_price_data(), test_engine)
-    result = test_setup_session.query(DailyPrices).count()
-    assert inserted_rows == result
-
-
-def test_pipeline_null_count(
-    get_mock_price_data, test_engine, test_setup_db, test_setup_session
-):
-    run_pipeline(DTYPES, get_mock_price_data(), test_engine)
-    for col in ["date", "open", "high", "low", "close", "volume"]:
-        column = getattr(DailyPrices, col)
-        null_count = (
-            test_setup_session.query(func.count()).filter(column.is_(None)).scalar()
-        )
-        assert null_count == 0, f"found {null_count} in {column}"
-
-
-def test_pipeline_idempotency(get_mock_price_data, test_engine, test_setup_db):
-    """Test pipeline doesn't insert duplicates on re-run"""
-    first_run = run_pipeline(DTYPES, get_mock_price_data(), test_engine)
-    second_run = run_pipeline(DTYPES, get_mock_price_data(), test_engine)
-
-    assert first_run == 10
-    assert second_run == 0

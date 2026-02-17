@@ -2,10 +2,97 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 import math
 from datetime import date
 from decimal import Decimal
+import re
+from typing import Optional, ClassVar, Set
 
 
-class DailyPriceResponse(BaseModel):
+class TickerValidationMixin(BaseModel):
+    """Mixin for ticker validation"""
+    
+    ticker: str
+    
+    # Regex pattern for valid ticker symbols
+    TICKER_PATTERN: ClassVar[re.Pattern] = re.compile(r'^[A-Z]{1,5}(-[A-Z])?$')
+    INVALID_VALUES: ClassVar[Set[str]] = {'NONE', 'NULL', 'UNDEFINED', 'NA', 'N/A', ''}
+    
+    @field_validator("ticker")
+    @classmethod
+    def validate_ticker_format(cls, v: str) -> str:
+        """Validate ticker format and basic rules"""
+        if not v or not isinstance(v, str):
+            raise ValueError("Ticker is required and must be a string")
+        
+        # Clean and normalize
+        ticker = v.strip().upper()
+        
+        # Check for invalid values
+        if ticker in cls.INVALID_VALUES:
+            raise ValueError(f"Invalid ticker value: '{v}'")
+        
+        # Check format
+        if not cls.TICKER_PATTERN.match(ticker):
+            raise ValueError(
+                f"Invalid ticker format: '{v}'. "
+                "Ticker must be 1-5 uppercase letters (e.g., AAPL, MSFT, BRK-A)"
+            )
+        
+        return ticker
+    
+    # @model_validator(mode='after')
+    # def validate_ticker_exists(self):
+        # """Validate that ticker exists in market (optional - can be slow)"""
+        # Only enable this if you want to check existence during validation
+        # Comment out if you prefer to check during data fetching
+        
+        # Uncomment to enable existence checking:
+        # try:
+        #     stock = yf.Ticker(self.ticker)
+        #     # Quick check - try to get recent data
+        #     hist = stock.history(period="5d")
+        #     if hist.empty:
+        #         # Try info as fallback
+        #         info = stock.info
+        #         if not info or not any(k in info for k in ['symbol', 'regularMarketPrice', 'shortName']):
+        #             raise ValueError(
+        #                 f"Ticker '{self.ticker}' not found or has no trading data. "
+        #                 "Please verify the ticker symbol is correct."
+        #             )
+        # except Exception as e:
+        #     if "not found" in str(e).lower():
+        #         raise ValueError(f"Ticker '{self.ticker}' does not exist")
+        #     # Don't fail on network errors during validation
+        #     pass
+        
+        # return self
 
+
+class DateRangeValidator(BaseModel):
+    start_date: date
+    end_date: date
+
+    @field_validator("end_date")
+    @classmethod
+    def validate_date_range(cls, end_date: date, info):
+        start_date = info.data.get("start_date")
+        if start_date and end_date < start_date:
+            raise ValueError("end_date must be >= start_date")
+        return end_date
+
+
+class CleanNaNModel(BaseModel):
+    @field_validator("*", mode="before")
+    @classmethod
+    def clean_nan(cls, v):
+        if isinstance(v, Decimal):
+            if v.is_nan() or v.is_infinite():
+                return None
+            return float(v)
+        if isinstance(v, float) and (math.isnan(v) or math.isinf(v)):
+            return None
+        return v
+
+
+class DailyPriceResponse(CleanNaNModel):
     date: date
     ticker: str
     open: float
@@ -26,19 +113,6 @@ class DailyPriceResponse(BaseModel):
     upper_shadow: float
     lower_shadow: float
 
-    @field_validator("*", mode="before")
-    @classmethod
-    def clean_nan(cls, v):
-        # Handle Decimal NaN
-        if isinstance(v, Decimal):
-            if v.is_nan() or v.is_infinite():
-                return None
-            return float(v)
-        # Handle float NaN
-        if isinstance(v, float) and (math.isnan(v) or math.isinf(v)):
-            return None
-        return v
-
 
 class PaginationMeta(BaseModel):
     total_records: int
@@ -52,22 +126,21 @@ class PaginatedDailyPrices(BaseModel):
     pagination: PaginationMeta
 
 
-class DailyPriceInput(BaseModel):
-    ticker: str
-    start_date: date
-    end_date: date
+class DailyPriceQueryInput(DateRangeValidator,TickerValidationMixin):
+   
     limit: int = Field(gt=0, le=100)
     offset: int = Field(ge=0)
 
-    @field_validator("*", mode="before")
-    @classmethod
-    def clean_nan(cls, v):
-        # Handle Decimal NaN
-        if isinstance(v, Decimal):
-            if v.is_nan() or v.is_infinite():
-                return None
-            return float(v)
-        # Handle float NaN
-        if isinstance(v, float) and (math.isnan(v) or math.isinf(v)):
-            return None
-        return v
+
+class DailyPriceLiveInput(DateRangeValidator,TickerValidationMixin):
+
+    volatility_window: int = 15
+    moving_window: int = 10
+
+
+class DailyPriceLiveResponse(BaseModel):
+    data: list[DailyPriceResponse]
+    total_records: int
+    error_message: Optional[str] = None 
+    error_type: Optional[str] = None     
+

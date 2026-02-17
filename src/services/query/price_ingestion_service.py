@@ -39,6 +39,11 @@ class PriceIngestionService:
 
                 raw_df = Ingestion(str(start_range), str(end_range), ticker).run()
                 fetched = len(raw_df)
+                if raw_df.empty:
+                    raise NoDataAvailableError(
+                        f"No data available for '{ticker}' between {start_range} and {end_range}. "
+                        f"Please check: ticker symbol is correct, date range is valid, and dates are trading days."
+                    )
                 total_fetched += fetched
 
                 logger.info(

@@ -2,8 +2,8 @@ from sqlalchemy.orm import Session
 from math import ceil
 import logging
 from src.repositories.price_repository import PriceRepository
-from src.services.price_ingestion_service import PriceIngestionService
-from src.api.schemas import DailyPriceInput, PaginatedDailyPrices
+from src.services.query.price_ingestion_service import PriceIngestionService
+from src.api.schemas import DailyPriceQueryInput, PaginatedDailyPrices
 
 
 logger = logging.getLogger(__name__)
@@ -15,7 +15,7 @@ class PriceQueryService:
         self.repository = PriceRepository(self.db)
         self.ingestion_service = PriceIngestionService(self.db)
 
-    def get_price(self, params: DailyPriceInput) -> PaginatedDailyPrices:
+    def get_price(self, params: DailyPriceQueryInput) -> PaginatedDailyPrices:
         logger.info(
             "Query started | ticker=%s | %s → %s | limit=%s | offset=%s",
             params.ticker,

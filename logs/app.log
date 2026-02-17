@@ -1,63 +1,190 @@
-2026-02-11 16:00:24,941 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=10 | offset=0
-2026-02-11 16:00:25,039 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
-2026-02-11 16:00:25,040 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
-2026-02-11 16:01:37,067 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=3 | offset=0
-2026-02-11 16:01:37,169 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=3
-2026-02-11 16:01:37,170 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/7
-2026-02-11 16:01:49,103 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=10 | offset=0
-2026-02-11 16:01:49,122 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
-2026-02-11 16:01:49,123 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
-2026-02-11 16:02:00,837 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=9 | offset=0
-2026-02-11 16:02:00,846 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=9
-2026-02-11 16:02:00,849 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/3
-2026-02-11 16:02:06,563 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=8 | offset=0
-2026-02-11 16:02:06,658 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=8
-2026-02-11 16:02:06,659 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/3
-2026-02-11 16:02:10,255 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=7 | offset=0
-2026-02-11 16:02:10,260 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=7
-2026-02-11 16:02:10,261 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/3
-2026-02-11 16:02:14,312 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=6 | offset=0
-2026-02-11 16:02:14,320 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=6
-2026-02-11 16:02:14,322 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/4
-2026-02-11 16:02:17,793 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=5 | offset=0
-2026-02-11 16:02:17,798 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=5
-2026-02-11 16:02:17,799 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/4
-2026-02-11 16:02:20,934 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=4 | offset=0
-2026-02-11 16:02:20,940 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=4
-2026-02-11 16:02:20,942 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/5
-2026-02-11 16:03:46,137 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=5 | offset=0
-2026-02-11 16:03:46,144 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=5
-2026-02-11 16:03:46,146 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/4
-2026-02-11 16:15:06,231 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-02 → 2025-01-30 | limit=10 | offset=0
-2026-02-11 16:15:06,324 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
-2026-02-11 16:15:06,325 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
-2026-02-11 16:16:08,746 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-01 → 2025-01-31 | limit=10 | offset=0
-2026-02-11 16:16:08,751 | INFO | src.services.price_query_service | Missing data detected | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1)), (datetime.date(2025, 1, 31), datetime.date(2025, 1, 31))]
-2026-02-11 16:16:08,752 | INFO | src.services.price_ingestion_service | Ingestion started | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1)), (datetime.date(2025, 1, 31), datetime.date(2025, 1, 31))]
-2026-02-11 16:16:08,754 | INFO | src.services.price_ingestion_service | Fetching market data | ticker=MSFT | 2025-01-01 → 2025-01-01
-2026-02-11 16:16:08,756 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-01 to 2025-01-01
-2026-02-11 16:16:09,361 | ERROR | yfinance | $MSFT: possibly delisted; no price data found  (1d 2025-01-01 -> 2025-01-01)
-2026-02-11 16:16:09,363 | INFO | src.services.price_ingestion_service | No data | ticker=MSFT | 2025-01-01 → 2025-01-01
-2026-02-11 16:16:09,364 | INFO | src.services.price_ingestion_service | Fetching market data | ticker=MSFT | 2025-01-31 → 2025-01-31
-2026-02-11 16:16:09,366 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-31 to 2025-01-31
-2026-02-11 16:16:09,491 | ERROR | yfinance | $MSFT: possibly delisted; no price data found  (1d 2025-01-31 -> 2025-01-31)
-2026-02-11 16:16:09,495 | INFO | src.services.price_ingestion_service | No data | ticker=MSFT | 2025-01-31 → 2025-01-31
-2026-02-11 16:16:09,498 | INFO | src.services.price_ingestion_service | Ingestion finished | ticker=MSFT | fetched=0 | inserted=0 | status=No new data
-2026-02-11 16:16:09,501 | INFO | src.services.price_query_service | Ingestion summary | ticker=MSFT | fetched=0 | inserted=0
-2026-02-11 16:16:09,510 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
-2026-02-11 16:16:09,513 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
-2026-02-11 16:23:36,674 | INFO | src.services.price_query_service | Query started | ticker=MSFT | 2025-01-01 → 2025-01-31 | limit=10 | offset=0
-2026-02-11 16:23:36,830 | INFO | src.services.price_query_service | Missing data detected | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1)), (datetime.date(2025, 1, 31), datetime.date(2025, 1, 31))]
-2026-02-11 16:23:36,832 | INFO | src.services.price_ingestion_service | Ingestion started | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1)), (datetime.date(2025, 1, 31), datetime.date(2025, 1, 31))]
-2026-02-11 16:23:36,833 | INFO | src.services.price_ingestion_service | Fetching market data | ticker=MSFT | 2025-01-01 → 2025-01-01
-2026-02-11 16:23:36,834 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-01 to 2025-01-01
-2026-02-11 16:23:37,447 | ERROR | yfinance | $MSFT: possibly delisted; no price data found  (1d 2025-01-01 -> 2025-01-01)
-2026-02-11 16:23:37,455 | INFO | src.services.price_ingestion_service | No data | ticker=MSFT | 2025-01-01 → 2025-01-01
-2026-02-11 16:23:37,458 | INFO | src.services.price_ingestion_service | Fetching market data | ticker=MSFT | 2025-01-31 → 2025-01-31
-2026-02-11 16:23:37,463 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-31 to 2025-01-31
-2026-02-11 16:23:37,581 | ERROR | yfinance | $MSFT: possibly delisted; no price data found  (1d 2025-01-31 -> 2025-01-31)
-2026-02-11 16:23:37,585 | INFO | src.services.price_ingestion_service | No data | ticker=MSFT | 2025-01-31 → 2025-01-31
-2026-02-11 16:23:37,587 | INFO | src.services.price_ingestion_service | Ingestion finished | ticker=MSFT | fetched=0 | inserted=0 | status=No new data
-2026-02-11 16:23:37,588 | INFO | src.services.price_query_service | Ingestion summary | ticker=MSFT | fetched=0 | inserted=0
-2026-02-11 16:23:37,600 | INFO | src.services.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
-2026-02-11 16:23:37,602 | INFO | src.services.price_query_service | Query finished | ticker=MSFT | page=1/2
+2026-02-11 20:37:31,588 | INFO | src.services.v1.price_query_service | Query started | ticker=MSFT | 2025-01-01 → 2025-01-31 | limit=10 | offset=0
+2026-02-11 20:37:31,739 | INFO | src.services.v1.price_query_service | Missing data detected | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1))]
+2026-02-11 20:37:31,740 | INFO | src.services.v1.price_ingestion_service | Ingestion started | ticker=MSFT | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 1))]
+2026-02-11 20:37:31,741 | INFO | src.services.v1.price_ingestion_service | Fetching market data | ticker=MSFT | 2025-01-01 → 2025-01-01
+2026-02-11 20:37:31,742 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-01 to 2025-01-01
+2026-02-11 20:37:32,337 | ERROR | yfinance | $MSFT: possibly delisted; no price data found  (1d 2025-01-01 -> 2025-01-01)
+2026-02-11 20:37:32,340 | INFO | src.services.v1.price_ingestion_service | No data | ticker=MSFT | 2025-01-01 → 2025-01-01
+2026-02-11 20:37:32,342 | INFO | src.services.v1.price_ingestion_service | Ingestion finished | ticker=MSFT | fetched=0 | inserted=0 | status=No new data
+2026-02-11 20:37:32,344 | INFO | src.services.v1.price_query_service | Ingestion summary | ticker=MSFT | fetched=0 | inserted=0
+2026-02-11 20:37:32,358 | INFO | src.services.v1.price_query_service | DB query complete | ticker=MSFT | total=19 | returned=10
+2026-02-11 20:37:32,360 | INFO | src.services.v1.price_query_service | Query finished | ticker=MSFT | page=1/2
+2026-02-11 20:53:20,133 | INFO | src.services.v2.live_analyzer | Query started | ticker=MSFT | 2025-01-01 → 2025-01-31 
+2026-02-11 20:53:20,135 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=MSFT | 2025-01-01 → 2025-01-31
+2026-02-11 20:53:20,137 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-01 to 2025-01-31
+2026-02-11 20:53:20,773 | INFO | src.pipelines.ingestions.market_api | Fetched 19 records for MSFT
+2026-02-11 20:53:20,775 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 19 records for MSFT
+2026-02-11 20:53:20,776 | INFO | src.services.v2.live_analyzer | Fetched rows=19 | ticker=MSFT | 2025-01-01 → 2025-01-31
+2026-02-11 20:53:40,657 | INFO | src.services.v2.live_analyzer | Query started | ticker=MSFT | 2025-01-01 → 2025-12-31 
+2026-02-11 20:53:40,659 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=MSFT | 2025-01-01 → 2025-12-31
+2026-02-11 20:53:40,661 | INFO | src.pipelines.ingestions.market_api | Fetching MSFT data from 2025-01-01 to 2025-12-31
+2026-02-11 20:53:41,255 | INFO | src.pipelines.ingestions.market_api | Fetched 249 records for MSFT
+2026-02-11 20:53:41,257 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 249 records for MSFT
+2026-02-11 20:53:41,258 | INFO | src.services.v2.live_analyzer | Fetched rows=249 | ticker=MSFT | 2025-01-01 → 2025-12-31
+2026-02-11 20:55:45,945 | INFO | src.services.v2.live_analyzer | Query started | ticker=asfh | 2025-01-01 → 2025-12-31 
+2026-02-11 20:55:45,947 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=asfh | 2025-01-01 → 2025-12-31
+2026-02-11 20:55:45,949 | INFO | src.pipelines.ingestions.market_api | Fetching asfh data from 2025-01-01 to 2025-12-31
+2026-02-11 20:55:46,285 | INFO | src.pipelines.ingestions.market_api | Fetched 249 records for asfh
+2026-02-11 20:55:46,287 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 249 records for asfh
+2026-02-11 20:55:46,288 | INFO | src.services.v2.live_analyzer | Fetched rows=249 | ticker=asfh | 2025-01-01 → 2025-12-31
+2026-02-11 20:56:25,420 | INFO | src.services.v2.live_analyzer | Query started | ticker=negar | 2025-01-01 → 2025-12-31 
+2026-02-11 20:56:25,426 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=negar | 2025-01-01 → 2025-12-31
+2026-02-11 20:56:25,428 | INFO | src.pipelines.ingestions.market_api | Fetching negar data from 2025-01-01 to 2025-12-31
+2026-02-11 20:56:26,376 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: NEGAR"}}}
+2026-02-11 20:56:26,628 | ERROR | yfinance | $NEGAR: possibly delisted; no timezone found
+2026-02-11 20:56:26,632 | INFO | src.services.v2.live_analyzer | No data | ticker=negar | 2025-01-01 → 2025-12-31
+2026-02-11 20:58:01,136 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-12-31 
+2026-02-11 20:58:01,140 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-12-31
+2026-02-11 20:58:01,141 | INFO | src.pipelines.ingestions.market_api | Fetching AAPL data from 2025-01-01 to 2025-12-31
+2026-02-11 20:58:01,783 | INFO | src.pipelines.ingestions.market_api | Fetched 249 records for AAPL
+2026-02-11 20:58:01,784 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 249 records for AAPL
+2026-02-11 20:58:01,785 | INFO | src.services.v2.live_analyzer | Fetched rows=249 | ticker=AAPL | 2025-01-01 → 2025-12-31
+2026-02-11 20:58:16,443 | INFO | src.services.v2.live_analyzer | Query started | ticker=ASDF | 2025-01-01 → 2025-12-31 
+2026-02-11 20:58:16,445 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=ASDF | 2025-01-01 → 2025-12-31
+2026-02-11 20:58:16,446 | INFO | src.pipelines.ingestions.market_api | Fetching ASDF data from 2025-01-01 to 2025-12-31
+2026-02-11 20:58:17,087 | ERROR | yfinance | $ASDF: possibly delisted; no price data found  (1d 2025-01-01 -> 2025-12-31)
+2026-02-11 20:58:17,090 | INFO | src.services.v2.live_analyzer | No data | ticker=ASDF | 2025-01-01 → 2025-12-31
+2026-02-11 20:58:25,438 | INFO | src.services.v2.live_analyzer | Query started | ticker=JJJJ | 2025-01-01 → 2025-12-31 
+2026-02-11 20:58:25,440 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=JJJJ | 2025-01-01 → 2025-12-31
+2026-02-11 20:58:25,443 | INFO | src.pipelines.ingestions.market_api | Fetching JJJJ data from 2025-01-01 to 2025-12-31
+2026-02-11 20:58:26,531 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: JJJJ"}}}
+2026-02-11 20:58:26,796 | ERROR | yfinance | $JJJJ: possibly delisted; no timezone found
+2026-02-11 20:58:26,800 | INFO | src.services.v2.live_analyzer | No data | ticker=JJJJ | 2025-01-01 → 2025-12-31
+2026-02-11 21:02:24,878 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:02:24,879 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:02:25,571 | INFO | src.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-02-11 21:02:25,574 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-02-11 21:02:25,575 | INFO | src.services.v2.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:02:32,875 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:02:32,877 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLL | 2025-01-01 → 2025-01-31
+2026-02-11 21:02:34,765 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLL"}}}
+2026-02-11 21:02:35,027 | ERROR | yfinance | $AAPLL: possibly delisted; no timezone found
+2026-02-11 21:02:35,031 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLL | 2025-01-01 → 2025-01-31 | error=No data for AAPLL from 2025-01-01 to 2025-01-31
+2026-02-11 21:02:49,504 | INFO | src.services.v2.live_analyzer | Query started | ticker=12 | 2025-01-01 → 2025-01-31 
+2026-02-11 21:02:49,506 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=12 | 2025-01-01 → 2025-01-31
+2026-02-11 21:02:50,829 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: 12"}}}
+2026-02-11 21:02:51,090 | ERROR | yfinance | $12: possibly delisted; no timezone found
+2026-02-11 21:02:51,096 | WARNING | src.services.v2.live_analyzer | No data | ticker=12 | 2025-01-01 → 2025-01-31 | error=No data for 12 from 2025-01-01 to 2025-01-31
+2026-02-11 21:03:02,783 | INFO | src.services.v2.live_analyzer | Query started | ticker=negar | 2025-01-01 → 2025-01-31 
+2026-02-11 21:03:02,786 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=negar | 2025-01-01 → 2025-01-31
+2026-02-11 21:03:03,869 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: NEGAR"}}}
+2026-02-11 21:03:04,118 | ERROR | yfinance | $NEGAR: possibly delisted; no timezone found
+2026-02-11 21:03:04,122 | WARNING | src.services.v2.live_analyzer | No data | ticker=negar | 2025-01-01 → 2025-01-31 | error=No data for negar from 2025-01-01 to 2025-01-31
+2026-02-11 21:04:13,741 | INFO | src.services.v2.live_analyzer | Query started | ticker=negar | 2025-01-01 → 2025-01-31 
+2026-02-11 21:04:13,743 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=negar | 2025-01-01 → 2025-01-31
+2026-02-11 21:04:15,020 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: NEGAR"}}}
+2026-02-11 21:04:15,275 | ERROR | yfinance | $NEGAR: possibly delisted; no timezone found
+2026-02-11 21:04:15,281 | WARNING | src.services.v2.live_analyzer | No data | ticker=negar | 2025-01-01 → 2025-01-31 | error=No data for negar from 2025-01-01 to 2025-01-31
+2026-02-11 21:04:44,739 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:04:44,742 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:04:45,384 | INFO | src.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-02-11 21:04:45,387 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-02-11 21:04:45,388 | INFO | src.services.v2.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:04:53,322 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:04:53,323 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLL | 2025-01-01 → 2025-01-31
+2026-02-11 21:04:54,594 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLL"}}}
+2026-02-11 21:04:54,855 | ERROR | yfinance | $AAPLL: possibly delisted; no timezone found
+2026-02-11 21:04:54,861 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLL | 2025-01-01 → 2025-01-31 | error=No data for AAPLL from 2025-01-01 to 2025-01-31
+2026-02-11 21:06:38,054 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:06:38,057 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLL | 2025-01-01 → 2025-01-31
+2026-02-11 21:06:38,898 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLL"}}}
+2026-02-11 21:06:39,154 | ERROR | yfinance | $AAPLL: possibly delisted; no timezone found
+2026-02-11 21:06:39,155 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLL | 2025-01-01 → 2025-01-31 | error=No data for AAPLL from 2025-01-01 to 2025-01-31
+2026-02-11 21:06:50,376 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLLLLLL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:06:50,378 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLLLLLL | 2025-01-01 → 2025-01-31
+2026-02-11 21:06:51,519 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLLLLLL"}}}
+2026-02-11 21:06:51,778 | ERROR | yfinance | $AAPLLLLLL: possibly delisted; no timezone found
+2026-02-11 21:06:51,781 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLLLLLL | 2025-01-01 → 2025-01-31 | error=No data for AAPLLLLLL from 2025-01-01 to 2025-01-31
+2026-02-11 21:25:55,600 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:25:55,603 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:25:56,223 | INFO | src.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-02-11 21:25:56,225 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-02-11 21:25:56,226 | INFO | src.services.v2.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:26:02,479 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:26:02,493 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLL | 2025-01-01 → 2025-01-31
+2026-02-11 21:26:03,756 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLL"}}}
+2026-02-11 21:26:04,023 | ERROR | yfinance | $AAPLL: possibly delisted; no timezone found
+2026-02-11 21:26:04,026 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLL | 2025-01-01 → 2025-01-31 | error=No data for AAPLL from 2025-01-01 to 2025-01-31
+2026-02-11 21:26:25,283 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:26:25,285 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLL | 2025-01-01 → 2025-01-31
+2026-02-11 21:26:26,177 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLL"}}}
+2026-02-11 21:26:26,426 | ERROR | yfinance | $AAPLL: possibly delisted; no timezone found
+2026-02-11 21:26:26,427 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLL | 2025-01-01 → 2025-01-31 | error=No data for AAPLL from 2025-01-01 to 2025-01-31
+2026-02-11 21:40:51,858 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:40:51,861 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:40:52,536 | INFO | src.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-02-11 21:40:52,538 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-02-11 21:40:52,539 | INFO | src.services.v2.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:40:58,964 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:40:58,965 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLL | 2025-01-01 → 2025-01-31
+2026-02-11 21:40:59,843 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLL"}}}
+2026-02-11 21:41:00,100 | ERROR | yfinance | $AAPLL: possibly delisted; no timezone found
+2026-02-11 21:41:00,105 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLL | 2025-01-01 → 2025-01-31 | error=No data for AAPLL from 2025-01-01 to 2025-01-31
+2026-02-11 21:51:28,494 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:51:28,496 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:51:29,152 | INFO | src.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-02-11 21:51:29,154 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-02-11 21:51:29,155 | INFO | src.services.v2.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:51:33,948 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:51:33,950 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:51:33,961 | INFO | src.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-02-11 21:51:33,964 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-02-11 21:51:33,965 | INFO | src.services.v2.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:51:46,857 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:51:46,858 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLL | 2025-01-01 → 2025-01-31
+2026-02-11 21:51:48,126 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLL"}}}
+2026-02-11 21:51:48,375 | ERROR | yfinance | $AAPLL: possibly delisted; no timezone found
+2026-02-11 21:51:48,378 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLL | 2025-01-01 → 2025-01-31 | error=No data for AAPLL from 2025-01-01 to 2025-01-31
+2026-02-11 21:55:55,182 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:55:55,184 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:55:55,863 | INFO | src.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-02-11 21:55:55,865 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-02-11 21:55:55,866 | INFO | src.services.v2.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:55:55,874 | ERROR | src.services.v2.live_analyzer | Unexpected error | ticker=AAPL | 2025-01-01 → 2025-01-31
+Traceback (most recent call last):
+  File "/Users/negarnasiri/Documents/python/stock_analysis/src/services/v2/live_analyzer.py", line 54, in get_price
+    return DailyPriceLiveResponse(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/pydantic/main.py", line 250, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 2 validation errors for DailyPriceLiveResponse
+error_message
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+error_type
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.12/v/string_type
+2026-02-11 21:58:56,138 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:58:56,141 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:58:56,791 | INFO | src.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-02-11 21:58:56,794 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-02-11 21:58:56,796 | INFO | src.services.v2.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-02-11 21:59:09,537 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLL | 2025-01-01 → 2025-01-31 
+2026-02-11 21:59:09,540 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLL | 2025-01-01 → 2025-01-31
+2026-02-11 21:59:10,552 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLL"}}}
+2026-02-11 21:59:10,802 | ERROR | yfinance | $AAPLL: possibly delisted; no timezone found
+2026-02-11 21:59:10,806 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLL | 2025-01-01 → 2025-01-31 | error=No data for AAPLL from 2025-01-01 to 2025-01-31
+2026-02-11 21:59:34,017 | INFO | src.services.v2.live_analyzer | Query started | ticker=AAPLL | 2025-01-01 → 2030-01-31 
+2026-02-11 21:59:34,023 | INFO | src.services.v2.live_analyzer | Fetching market data | ticker=AAPLL | 2025-01-01 → 2030-01-31
+2026-02-11 21:59:34,527 | ERROR | yfinance | HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: AAPLL"}}}
+2026-02-11 21:59:34,616 | ERROR | yfinance | $AAPLL: possibly delisted; no timezone found
+2026-02-11 21:59:34,619 | WARNING | src.services.v2.live_analyzer | No data | ticker=AAPLL | 2025-01-01 → 2030-01-31 | error=No data for AAPLL from 2025-01-01 to 2030-01-31
+2026-02-12 08:16:30,664 | INFO | httpx | HTTP Request: GET http://testserver/prices "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:30,696 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2025-10-01&end_date=2025-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:30,698 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:30,700 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:30,702 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:30,704 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=20&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:30,707 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=5&offset=15 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:30,710 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2099-10-01&end_date=2099-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:30,712 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=invalid&end_date=invalid "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:48,424 | INFO | httpx | HTTP Request: GET http://testserver/prices "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:48,453 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2025-10-01&end_date=2025-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:48,455 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:48,458 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:48,460 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:48,462 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=20&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:48,464 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=5&offset=15 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:48,465 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2099-10-01&end_date=2099-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-12 08:16:48,467 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=invalid&end_date=invalid "HTTP/1.1 422 Unprocessable Entity"

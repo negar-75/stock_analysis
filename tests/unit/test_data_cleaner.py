@@ -106,6 +106,7 @@ def test_clean_data_right_input():
     data = pd.DataFrame(
         {
             "Date": ["2020-01-02", "2020-01-01", "2020-01-02"],
+            "Ticker": ["AAPL"] * 3,
             "Open": [12, 10, 12],
             "High": [15, 14, 15],
             "Low": [9, 8, 9],
@@ -116,6 +117,7 @@ def test_clean_data_right_input():
     )
     result = clean_data(data)
     assert list(result.columns) == [
+        "ticker",
         "date",
         "open",
         "high",
