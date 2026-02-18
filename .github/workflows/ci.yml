@@ -6,7 +6,7 @@ on:
     pull_request:
 jobs:
     test_and_build:
-        runs-on: ubunto-latest
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout repo
