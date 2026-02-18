@@ -6,10 +6,6 @@ from sqlalchemy.orm import sessionmaker
 import pandas as pd
 
 
-
-
-
-
 @pytest.fixture(scope="session")
 def test_engine():
     engine = get_engine("DB_NAME_TEST")
@@ -26,7 +22,9 @@ def test_setup_db(test_engine):
 
 @pytest.fixture
 def test_setup_session(test_engine, test_setup_db):
-    TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=test_engine)
+    TestingSessionLocal = sessionmaker(
+        autocommit=False, autoflush=False, bind=test_engine
+    )
     session = TestingSessionLocal()
     try:
         yield session

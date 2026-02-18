@@ -8,10 +8,7 @@ from sqlalchemy import (
     VARCHAR,
 )
 
-from sqlalchemy.orm import declarative_base
-
-
-Base = declarative_base()
+from src.db.models.base import Base
 
 
 class DailyPrices(Base):

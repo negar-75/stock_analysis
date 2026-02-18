@@ -8,62 +8,35 @@ from typing import Optional, ClassVar, Set
 
 class TickerValidationMixin(BaseModel):
     """Mixin for ticker validation"""
-    
+
     ticker: str
-    
+
     # Regex pattern for valid ticker symbols
-    TICKER_PATTERN: ClassVar[re.Pattern] = re.compile(r'^[A-Z]{1,5}(-[A-Z])?$')
-    INVALID_VALUES: ClassVar[Set[str]] = {'NONE', 'NULL', 'UNDEFINED', 'NA', 'N/A', ''}
-    
+    TICKER_PATTERN: ClassVar[re.Pattern] = re.compile(r"^[A-Z]{1,5}(-[A-Z])?$")
+    INVALID_VALUES: ClassVar[Set[str]] = {"NONE", "NULL", "UNDEFINED", "NA", "N/A", ""}
+
     @field_validator("ticker")
     @classmethod
     def validate_ticker_format(cls, v: str) -> str:
         """Validate ticker format and basic rules"""
         if not v or not isinstance(v, str):
             raise ValueError("Ticker is required and must be a string")
-        
+
         # Clean and normalize
         ticker = v.strip().upper()
-        
+
         # Check for invalid values
         if ticker in cls.INVALID_VALUES:
             raise ValueError(f"Invalid ticker value: '{v}'")
-        
+
         # Check format
         if not cls.TICKER_PATTERN.match(ticker):
             raise ValueError(
                 f"Invalid ticker format: '{v}'. "
                 "Ticker must be 1-5 uppercase letters (e.g., AAPL, MSFT, BRK-A)"
             )
-        
+
         return ticker
-    
-    # @model_validator(mode='after')
-    # def validate_ticker_exists(self):
-        # """Validate that ticker exists in market (optional - can be slow)"""
-        # Only enable this if you want to check existence during validation
-        # Comment out if you prefer to check during data fetching
-        
-        # Uncomment to enable existence checking:
-        # try:
-        #     stock = yf.Ticker(self.ticker)
-        #     # Quick check - try to get recent data
-        #     hist = stock.history(period="5d")
-        #     if hist.empty:
-        #         # Try info as fallback
-        #         info = stock.info
-        #         if not info or not any(k in info for k in ['symbol', 'regularMarketPrice', 'shortName']):
-        #             raise ValueError(
-        #                 f"Ticker '{self.ticker}' not found or has no trading data. "
-        #                 "Please verify the ticker symbol is correct."
-        #             )
-        # except Exception as e:
-        #     if "not found" in str(e).lower():
-        #         raise ValueError(f"Ticker '{self.ticker}' does not exist")
-        #     # Don't fail on network errors during validation
-        #     pass
-        
-        # return self
 
 
 class DateRangeValidator(BaseModel):
@@ -126,13 +99,13 @@ class PaginatedDailyPrices(BaseModel):
     pagination: PaginationMeta
 
 
-class DailyPriceQueryInput(DateRangeValidator,TickerValidationMixin):
-   
+class DailyPriceQueryInput(DateRangeValidator, TickerValidationMixin):
+
     limit: int = Field(gt=0, le=100)
     offset: int = Field(ge=0)
 
 
-class DailyPriceLiveInput(DateRangeValidator,TickerValidationMixin):
+class DailyPriceLiveInput(DateRangeValidator, TickerValidationMixin):
 
     volatility_window: int = 15
     moving_window: int = 10
@@ -141,6 +114,5 @@ class DailyPriceLiveInput(DateRangeValidator,TickerValidationMixin):
 class DailyPriceLiveResponse(BaseModel):
     data: list[DailyPriceResponse]
     total_records: int
-    error_message: Optional[str] = None 
-    error_type: Optional[str] = None     
-
+    error_message: Optional[str] = None
+    error_type: Optional[str] = None

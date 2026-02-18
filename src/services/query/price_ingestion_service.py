@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from src.core.exceptions import MarketAPIError, NoDataAvailableError
 from src.pipelines.orchestrators.stock_pipeline import StockDataPipeline
 from src.core.pipeline_config import DTYPES
-from src.repositories.price_repository import PriceRepository
+from src.repositories.price import PriceRepository
 from src.pipelines.ingestions.market_api import Ingestion
 
 

@@ -188,3 +188,67 @@ error_type
 2026-02-12 08:16:48,464 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=5&offset=15 "HTTP/1.1 422 Unprocessable Entity"
 2026-02-12 08:16:48,465 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2099-10-01&end_date=2099-10-10 "HTTP/1.1 422 Unprocessable Entity"
 2026-02-12 08:16:48,467 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=invalid&end_date=invalid "HTTP/1.1 422 Unprocessable Entity"
+2026-02-17 10:19:12,675 | INFO | src.services.live.live_analyzer | Query started | ticker=AAPL | 2025-01-01 → 2025-12-31 
+2026-02-17 10:19:12,678 | INFO | src.services.live.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-12-31
+2026-02-17 10:19:13,354 | INFO | src.pipelines.ingestions.market_api | Fetched 249 records for AAPL
+2026-02-17 10:19:13,356 | INFO | src.pipelines.ingestions.market_api | Ingestion complete: 249 records for AAPL
+2026-02-17 10:19:13,356 | INFO | src.services.live.live_analyzer | Fetched rows=249 | ticker=AAPL | 2025-01-01 → 2025-12-31
+2026-02-18 18:46:24,187 | INFO | httpx | HTTP Request: GET http://testserver/prices "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:46:24,219 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2025-10-01&end_date=2025-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:46:24,221 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:46:24,224 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:46:24,226 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:46:24,228 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=20&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:46:24,231 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=5&offset=15 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:46:24,233 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2099-10-01&end_date=2099-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:46:24,235 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=invalid&end_date=invalid "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,401 | INFO | httpx | HTTP Request: GET http://testserver/prices "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,432 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2025-10-01&end_date=2025-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,434 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,436 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,439 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,441 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=20&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,443 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=5&offset=15 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,445 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2099-10-01&end_date=2099-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,447 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=invalid&end_date=invalid "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:56:49,537 | INFO | src.services.query.price_ingestion_service | Ingestion started | ticker=AAPL | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 10))]
+2026-02-18 18:56:49,537 | INFO | src.services.query.price_ingestion_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:56:49,537 | INFO | src.services.query.price_ingestion_service | Fetched rows=10 | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:56:49,543 | INFO | src.services.query.price_ingestion_service | Inserted rows=10 | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:56:49,543 | INFO | src.services.query.price_ingestion_service | Ingestion finished | ticker=AAPL | fetched=10 | inserted=10 | status=Inserted 10 rows
+2026-02-18 18:56:49,556 | INFO | src.services.query.price_ingestion_service | Ingestion started | ticker=AAPL | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 10))]
+2026-02-18 18:56:49,556 | INFO | src.services.query.price_ingestion_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:56:49,556 | INFO | src.services.query.price_ingestion_service | No data | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:56:49,556 | INFO | src.services.query.price_ingestion_service | Ingestion finished | ticker=AAPL | fetched=0 | inserted=0 | status=No new data
+2026-02-18 18:56:49,572 | INFO | src.services.query.price_ingestion_service | Ingestion started | ticker=AAPL | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 10)), (datetime.date(2025, 1, 15), datetime.date(2025, 1, 20))]
+2026-02-18 18:56:49,572 | INFO | src.services.query.price_ingestion_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:56:49,572 | INFO | src.services.query.price_ingestion_service | Fetched rows=10 | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:56:49,577 | INFO | src.services.query.price_ingestion_service | Inserted rows=10 | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:56:49,577 | INFO | src.services.query.price_ingestion_service | Fetching market data | ticker=AAPL | 2025-01-15 → 2025-01-20
+2026-02-18 18:56:49,577 | ERROR | src.services.query.price_ingestion_service | Market API error | ticker=AAPL | 2025-01-15 → 2025-01-20 | error=API down
+2026-02-18 18:56:49,578 | INFO | src.services.query.price_ingestion_service | Ingestion finished | ticker=AAPL | fetched=10 | inserted=10 | status=Completed with errors
+2026-02-18 18:57:06,924 | INFO | httpx | HTTP Request: GET http://testserver/prices "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:57:06,954 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2025-10-01&end_date=2025-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:57:06,956 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:57:06,958 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:57:06,960 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=10&offset=10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:57:06,962 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=20&offset=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:57:06,964 | INFO | httpx | HTTP Request: GET http://testserver/prices?limit=5&offset=15 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:57:06,966 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=2099-10-01&end_date=2099-10-10 "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:57:06,968 | INFO | httpx | HTTP Request: GET http://testserver/prices?start_date=invalid&end_date=invalid "HTTP/1.1 422 Unprocessable Entity"
+2026-02-18 18:57:07,034 | INFO | src.services.query.price_ingestion_service | Ingestion started | ticker=AAPL | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 10))]
+2026-02-18 18:57:07,034 | INFO | src.services.query.price_ingestion_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:57:07,034 | INFO | src.services.query.price_ingestion_service | Fetched rows=10 | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:57:07,040 | INFO | src.services.query.price_ingestion_service | Inserted rows=10 | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:57:07,040 | INFO | src.services.query.price_ingestion_service | Ingestion finished | ticker=AAPL | fetched=10 | inserted=10 | status=Inserted 10 rows
+2026-02-18 18:57:07,076 | INFO | src.services.query.price_ingestion_service | Ingestion started | ticker=AAPL | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 10))]
+2026-02-18 18:57:07,077 | INFO | src.services.query.price_ingestion_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:57:07,077 | INFO | src.services.query.price_ingestion_service | No data | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:57:07,077 | INFO | src.services.query.price_ingestion_service | Ingestion finished | ticker=AAPL | fetched=0 | inserted=0 | status=No new data
+2026-02-18 18:57:07,091 | INFO | src.services.query.price_ingestion_service | Ingestion started | ticker=AAPL | ranges=[(datetime.date(2025, 1, 1), datetime.date(2025, 1, 10)), (datetime.date(2025, 1, 15), datetime.date(2025, 1, 20))]
+2026-02-18 18:57:07,091 | INFO | src.services.query.price_ingestion_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:57:07,091 | INFO | src.services.query.price_ingestion_service | Fetched rows=10 | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:57:07,098 | INFO | src.services.query.price_ingestion_service | Inserted rows=10 | ticker=AAPL | 2025-01-01 → 2025-01-10
+2026-02-18 18:57:07,098 | INFO | src.services.query.price_ingestion_service | Fetching market data | ticker=AAPL | 2025-01-15 → 2025-01-20
+2026-02-18 18:57:07,098 | ERROR | src.services.query.price_ingestion_service | Market API error | ticker=AAPL | 2025-01-15 → 2025-01-20 | error=API down
+2026-02-18 18:57:07,098 | INFO | src.services.query.price_ingestion_service | Ingestion finished | ticker=AAPL | fetched=10 | inserted=10 | status=Completed with errors

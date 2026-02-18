@@ -5,6 +5,7 @@ import pandas as pd
 from sqlalchemy import func
 from src.core.pipeline_config import DTYPES
 
+
 @pytest.fixture
 def get_mock_price_data():
     """Factory that returns fresh DataFrame each call"""
@@ -117,6 +118,7 @@ def test_stock_pipeline_full_run(get_mock_price_data):
 
     assert expected_columns.issubset(set(result.columns))
 
+
 def test_stock_pipeline_feature_values(get_mock_price_data):
     pipeline = StockDataPipeline(DTYPES, get_mock_price_data(), 3, 3)
     df = pipeline.run()
@@ -133,6 +135,7 @@ def test_stock_pipeline_feature_values(get_mock_price_data):
     assert df.loc[2, "open_close_range"] == pytest.approx(
         df.loc[2, "close"] - df.loc[2, "open"]
     )
+
 
 def test_stock_pipeline_validation_error(get_mock_price_data):
     df = get_mock_price_data()

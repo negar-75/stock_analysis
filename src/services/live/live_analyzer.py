@@ -1,5 +1,5 @@
 import logging
-from src.api.schemas import DailyPriceLiveInput, DailyPriceLiveResponse
+from src.api.schemas.price import DailyPriceLiveInput, DailyPriceLiveResponse
 from src.core.pipeline_config import DTYPES
 from src.core.exceptions import MarketAPIError, NoDataAvailableError
 from src.pipelines.ingestions.market_api import Ingestion
@@ -32,9 +32,9 @@ class OnDemandAnalysisService:
             # Check if dataframe is empty
             if raw_df is None or raw_df.empty:
                 raise NoDataAvailableError(
-                        f"No data available for '{params.ticker}' between {params.start_date} and {params.end_date}. "
-                        f"Please check: ticker symbol is correct, date range is valid, and dates are trading days."
-                    )
+                    f"No data available for '{params.ticker}' between {params.start_date} and {params.end_date}. "
+                    f"Please check: ticker symbol is correct, date range is valid, and dates are trading days."
+                )
 
             fetched = len(raw_df)
 
@@ -52,14 +52,11 @@ class OnDemandAnalysisService:
 
             data = processed_df.to_dict(orient="records")
             return DailyPriceLiveResponse(
-                data=data,
-                total_records=fetched,
-                error_message=None,
-                error_type=None
+                data=data, total_records=fetched, error_message=None, error_type=None
             )
 
         except NoDataAvailableError as e:
-            
+
             logger.warning(
                 "No data | ticker=%s | %s → %s | error=%s",
                 params.ticker,
@@ -68,13 +65,11 @@ class OnDemandAnalysisService:
                 str(e),
             )
             return DailyPriceLiveResponse(
-                data=[], 
+                data=[],
                 total_records=0,
-                error_message=str(e), 
-                error_type="NO_DATA_AVAILABLE"
+                error_message=str(e),
+                error_type="NO_DATA_AVAILABLE",
             )
-            
-    
 
         except MarketAPIError as e:
             logger.error(
@@ -85,10 +80,7 @@ class OnDemandAnalysisService:
                 str(e),
             )
             return DailyPriceLiveResponse(
-                data=[], 
-                total_records=0,
-                error_message=str(e), 
-                error_type="API_ERROR"
+                data=[], total_records=0, error_message=str(e), error_type="API_ERROR"
             )
         except Exception as e:
             # Catch-all for unexpected errors
@@ -99,8 +91,8 @@ class OnDemandAnalysisService:
                 params.end_date,
             )
             return DailyPriceLiveResponse(
-                data=[], 
+                data=[],
                 total_records=0,
                 error_message=f"Unexpected error: {str(e)}",
-                error_type="INTERNAL_ERROR"
+                error_type="INTERNAL_ERROR",
             )
