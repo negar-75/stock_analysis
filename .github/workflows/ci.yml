@@ -21,7 +21,7 @@ jobs:
                 pip install -r requirements.txt
                 pip install pytest
             - name: Run tests
-              run: pytest
+              run: PYTHONPATH=. pytest
             - name: Build Docker image
               run: docker build -t stock-analysis .
 
