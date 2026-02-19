@@ -15,7 +15,7 @@ from pandas.api.types import (
 TYPE_CHECKS = {
     "datetime": is_datetime64_any_dtype,
     "float": is_float_dtype,
-    "integer": is_integer_dtype,
+    "int": is_integer_dtype,
     "object": is_object_dtype,
 }
 
@@ -49,18 +49,17 @@ def check_column_type(data: pd.DataFrame, columns_type: dict) -> bool:
     Returns:
         bool: True if all columns have correct types, False otherwise.
     """
-    for col, excepted in columns_type.items():
+    for col, expected in columns_type.items():
         checker = next(
-            (func for key, func in TYPE_CHECKS.items() if excepted.startswith(key)),
+            (func for key, func in TYPE_CHECKS.items() if expected.startswith(key)),
             None,
         )
 
         if checker is None or not checker(data[col]):
-            print(
-                f"data type is wrong in column {col}, current type is {data[col].dtype}"
-            )
+            print(f"data type is wrong in column {col}, current type is {data[col].dtype}")
             return False
-        return True
+
+    return True
 
 
 def check_corrupted_values(data: pd.DataFrame) -> bool:
