@@ -7,7 +7,7 @@ from pydantic import (
     model_validator,
 )
 from typing import Optional
-from pydantic_core.core_schema import FieldValidationInfo
+from pydantic_core.core_schema import ValidationInfo
 from uuid import UUID
 
 
@@ -36,7 +36,7 @@ class UserCreate(UserBaseModel):
 
     @field_validator("password_2")
     @classmethod
-    def passwords_match(cls, v, info: FieldValidationInfo):
+    def passwords_match(cls, v, info: ValidationInfo):
 
         if (
             "password_1" in info.data

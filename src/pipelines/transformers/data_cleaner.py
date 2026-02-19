@@ -27,7 +27,11 @@ def convert_to_datetime(data: pd.DataFrame, col_name: str):
         None: The DataFrame is modified in place.
     """
     try:
-        data[f"{col_name}"] = pd.to_datetime(data[f"{col_name}"]).dt.date
+        data[f"{col_name}"] = pd.to_datetime(
+            data[col_name],
+            format="%Y-%m-%d",
+            errors="raise",
+        ).dt.date
         return True
     except (ValueError, TypeError) as e:
         print(f"Data conversion error :{e}")

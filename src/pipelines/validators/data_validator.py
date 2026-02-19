@@ -5,6 +5,19 @@ Provides validation functions to ensure data quality before processing.
 """
 
 import pandas as pd
+from pandas.api.types import (
+    is_datetime64_any_dtype,
+    is_float_dtype,
+    is_integer_dtype,
+    is_object_dtype,
+)
+
+TYPE_CHECKS = {
+    "datetime": is_datetime64_any_dtype,
+    "float": is_float_dtype,
+    "integer": is_integer_dtype,
+    "object": is_object_dtype,
+}
 
 
 def required_columns_exist(data: pd.DataFrame, columns_list: list) -> bool:
@@ -36,13 +49,18 @@ def check_column_type(data: pd.DataFrame, columns_type: dict) -> bool:
     Returns:
         bool: True if all columns have correct types, False otherwise.
     """
-    for col in data.columns:
-        if data[f"{col}"].dtypes != columns_type[f"{col}"]:
+    for col, excepted in columns_type.items():
+        checker = next(
+            (func for key, func in TYPE_CHECKS.items() if excepted.startswith(key)),
+            None,
+        )
+
+        if checker is None or not checker(data[col]):
             print(
-                f"data type is wrong in column {col}, the current type is {data[col].dtypes}"
+                f"data type is wrong in column {col}, current type is {data[col].dtype}"
             )
             return False
-    return True
+        return True
 
 
 def check_corrupted_values(data: pd.DataFrame) -> bool:

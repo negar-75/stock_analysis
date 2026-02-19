@@ -94,7 +94,7 @@ def test_check_column_type_wrong_input():
         }
     )
     dtypes = {
-        "Date": "object",
+        "Date": "float",
         "Open": "float64",
         "High": "float64",
         "Low": "float64",
