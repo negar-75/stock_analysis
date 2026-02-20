@@ -7,6 +7,10 @@ on:
 jobs:
     test_and_build:
         runs-on: ubuntu-latest
+        env:
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
         steps:
             - name: Checkout repo
               uses: actions/checkout@v4
@@ -16,7 +20,6 @@ jobs:
 
             - name: Build containers
               run: docker compose build
-
             - name: Run tests container
               run: docker compose run --rm test
 
