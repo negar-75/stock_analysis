@@ -10,7 +10,7 @@ from sqlalchemy import func
 from sqlalchemy.dialects.postgresql import insert
 from datetime import date, timedelta
 from typing import List, Tuple, Optional
-from src.db.models.daily_prices import DailyPrices
+from stock_analysis.db.models.daily_prices import DailyPrices
 
 
 class PriceRepository:

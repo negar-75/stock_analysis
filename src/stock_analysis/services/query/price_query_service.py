@@ -1,9 +1,9 @@
 from sqlalchemy.orm import Session
 from math import ceil
 import logging
-from src.repositories.price import PriceRepository
-from src.services.query.price_ingestion_service import PriceIngestionService
-from src.api.schemas.price import DailyPriceQueryInput, PaginatedDailyPrices
+from stock_analysis.repositories.price import PriceRepository
+from stock_analysis.services.query.price_ingestion_service import PriceIngestionService
+from stock_analysis.api.schemas.price import DailyPriceQueryInput, PaginatedDailyPrices
 
 
 logger = logging.getLogger(__name__)

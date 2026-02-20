@@ -1,11 +1,11 @@
 from unittest.mock import patch
-from src.services.query.price_ingestion_service import PriceIngestionService
 from datetime import date
 import pandas as pd
-from src.core.exceptions import MarketAPIError
+from stock_analysis.core.exceptions import MarketAPIError
+from stock_analysis.services.query.price_ingestion_service import PriceIngestionService
 
 
-@patch("src.services.query.price_ingestion_service.Ingestion.run")
+@patch("stock_analysis.services.query.price_ingestion_service.Ingestion.run")
 def test_ingestion_success(mock_run, test_setup_session, get_mock_price_data):
     mock_run.return_value = get_mock_price_data()
     service = PriceIngestionService(test_setup_session)
@@ -21,7 +21,7 @@ def test_ingestion_success(mock_run, test_setup_session, get_mock_price_data):
     assert result["message"].startswith("Inserted")
 
 
-@patch("src.services.query.price_ingestion_service.Ingestion.run")
+@patch("stock_analysis.services.query.price_ingestion_service.Ingestion.run")
 def test_ingestion_no_data(mock_run, test_setup_session):
 
     mock_run.return_value = pd.DataFrame()
@@ -38,7 +38,7 @@ def test_ingestion_no_data(mock_run, test_setup_session):
     assert result["message"].startswith("No new data")
 
 
-@patch("src.services.query.price_ingestion_service.Ingestion.run")
+@patch("stock_analysis.services.query.price_ingestion_service.Ingestion.run")
 def test_ingestion_failure(mock_run, test_setup_session, get_mock_price_data):
 
     mock_run.side_effect = [get_mock_price_data(), MarketAPIError("API down")]

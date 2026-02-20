@@ -1,9 +1,9 @@
 import logging
-from src.api.schemas.price import DailyPriceLiveInput, DailyPriceLiveResponse
-from src.core.pipeline_config import DTYPES
-from src.core.exceptions import MarketAPIError, NoDataAvailableError
-from src.pipelines.ingestions.market_api import Ingestion
-from src.pipelines.orchestrators.stock_pipeline import StockDataPipeline
+from stock_analysis.api.schemas.price import DailyPriceLiveInput, DailyPriceLiveResponse
+from stock_analysis.core.pipeline_config import DTYPES
+from stock_analysis.core.exceptions import MarketAPIError, NoDataAvailableError
+from stock_analysis.pipelines.ingestions.market_api import Ingestion
+from stock_analysis.pipelines.orchestrators.stock_pipeline import StockDataPipeline
 
 logger = logging.getLogger(__name__)
 

@@ -56,7 +56,9 @@ def check_column_type(data: pd.DataFrame, columns_type: dict) -> bool:
         )
 
         if checker is None or not checker(data[col]):
-            print(f"data type is wrong in column {col}, current type is {data[col].dtype}")
+            print(
+                f"data type is wrong in column {col}, current type is {data[col].dtype}"
+            )
             return False
 
     return True

@@ -1,7 +1,7 @@
 import pandas as pd
-from src.pipelines.validators.data_validator import data_validation
-from src.pipelines.transformers.data_cleaner import clean_data
-from src.pipelines.transformers.feature_engineer import FeatureEngineering
+from stock_analysis.pipelines.validators.data_validator import data_validation
+from stock_analysis.pipelines.transformers.data_cleaner import clean_data
+from stock_analysis.pipelines.transformers.feature_engineer import FeatureEngineering
 
 
 class StockDataPipeline:

@@ -7,51 +7,20 @@ on:
 jobs:
     test_and_build:
         runs-on: ubuntu-latest
-
-        services:
-            postgres:
-                image: postgres:15
-                env:
-                    POSTGRES_USER: test
-                    POSTGRES_PASSWORD: test
-                    POSTGRES_DB: test_db
-                ports:
-                    - 5432:5432
-                options: >-
-                    --health-cmd="pg_isready -U test"
-                    --health-interval=10s
-                    --health-timeout=5s
-                    --health-retries=5
-
-        env:
-            DB_HOST: localhost
-            DB_PORT: 5432
-            DB_NAME: test
-            DB_USER: test
-            DB_PASSWORD: test
-            DB_NAME_TEST: test_db
         steps:
             - name: Checkout repo
               uses: actions/checkout@v4
             
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                python-version: "3.11"
-            - name: Install dependencies
-              run: |
-                pip install -r requirements.txt
-                pip install pytest
-            - name: Wait for Postgres
-              run: |
-                for i in {1..10}; do
-                  pg_isready -h localhost -p 5432 -U test && break
-                  sleep 2
-                done
-            - name: Run tests
-              run: PYTHONPATH=. pytest
-            - name: Build Docker image
-              run: docker build -t stock-analysis .
+            - name: Set up Docker Buildx
+              uses: docker/setup-buildx-action@v3
 
+            - name: Build containers
+              run: docker compose build
+
+            - name: Run tests container
+              run: docker compose run --rm test
+
+            - name: Stop containers
+              run: docker compose down
 
 

@@ -2,11 +2,11 @@ import logging
 from datetime import date
 from typing import List, Tuple
 from sqlalchemy.orm import Session
-from src.core.exceptions import MarketAPIError, NoDataAvailableError
-from src.pipelines.orchestrators.stock_pipeline import StockDataPipeline
-from src.core.pipeline_config import DTYPES
-from src.repositories.price import PriceRepository
-from src.pipelines.ingestions.market_api import Ingestion
+from stock_analysis.core.exceptions import MarketAPIError, NoDataAvailableError
+from stock_analysis.pipelines.orchestrators.stock_pipeline import StockDataPipeline
+from stock_analysis.core.pipeline_config import DTYPES
+from stock_analysis.repositories.price import PriceRepository
+from stock_analysis.pipelines.ingestions.market_api import Ingestion
 
 
 logger = logging.getLogger(__name__)

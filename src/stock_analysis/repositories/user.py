@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-from src.api.schemas.user import UserCreate
-from src.db.models import User
-from src.db.session import SessionLocal
-from src.api.security import get_password_hash
+from stock_analysis.api.schemas.user import UserCreate
+from stock_analysis.db.models import User
+from stock_analysis.db.session import SessionLocal
+from stock_analysis.api.security import get_password_hash
 
 
 class UserRepositiry:

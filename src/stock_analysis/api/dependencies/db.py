@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from typing import Generator
-from src.db.session import SessionLocal
+from stock_analysis.db.session import SessionLocal
 
 
 def get_db() -> Generator[Session, None, None]:

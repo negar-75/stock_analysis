@@ -1,14 +1,13 @@
-from src.db.session import get_engine
 import pytest
-from src.db.models.daily_prices import Base
-from sqlalchemy import inspect
-from sqlalchemy.orm import sessionmaker
 import pandas as pd
+from sqlalchemy.orm import sessionmaker
+from stock_analysis.db.models.daily_prices import Base
+from stock_analysis.db.engine import get_engine
 
 
 @pytest.fixture(scope="session")
 def test_engine():
-    engine = get_engine("DB_NAME_TEST")
+    engine = get_engine("test")
     yield engine
     engine.dispose()
 

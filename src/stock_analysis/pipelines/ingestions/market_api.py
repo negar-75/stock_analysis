@@ -2,7 +2,7 @@ import logging
 from typing import Optional
 import pandas as pd
 import yfinance as yf
-from src.core.exceptions import MarketAPIError, NoDataAvailableError
+from stock_analysis.core.exceptions import MarketAPIError, NoDataAvailableError
 
 
 logger = logging.getLogger(__name__)

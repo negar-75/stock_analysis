@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, text
 from sqlalchemy.dialects.postgresql import UUID
-from src.db.models.base import Base
+from stock_analysis.db.models.base import Base
 
 
 class User(Base):

@@ -8,7 +8,7 @@ from sqlalchemy import (
     VARCHAR,
 )
 
-from src.db.models.base import Base
+from stock_analysis.db.models.base import Base
 
 
 class DailyPrices(Base):

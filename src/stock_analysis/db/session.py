@@ -1,8 +1,8 @@
-from src.db.engine import get_engine
+from stock_analysis.db.engine import get_engine
 from sqlalchemy.orm import sessionmaker
 
 
-engine = get_engine("DB_NAME")
+engine = get_engine("prod")
 
 SessionLocal = sessionmaker(
     bind=engine,

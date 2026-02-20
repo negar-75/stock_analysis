@@ -1,4 +1,4 @@
-from src.pipelines.validators.data_validator import (
+from stock_analysis.pipelines.validators.data_validator import (
     required_columns_exist,
     check_column_type,
     check_corrupted_values,
