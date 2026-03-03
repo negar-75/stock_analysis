@@ -1,5 +1,5 @@
 from .services import PriceIngestionService, PriceQueryService, OnDemandAnalysisService
-from .repositories import PriceRepository, UserRepositiry
+from .repositories import PriceRepository, UserRepository
 from .api import (
     create_access_token,
     verify_password,
@@ -7,7 +7,7 @@ from .api import (
     get_db,
     UserBaseModel,
     UserCreate,
-    UserLogin,
+    UserLoginRequest,
     UserUpdate,
     DailyPriceLiveInput,
     DailyPriceLiveResponse,
@@ -36,14 +36,14 @@ __all__ = [
     "PriceQueryService",
     "OnDemandAnalysisService",
     "PriceRepository",
-    "UserRepositiry",
+    "UserRepository",
     "create_access_token",
     "verify_password",
     "get_password_hash",
     "get_db",
     "UserBaseModel",
     "UserCreate",
-    "UserLogin",
+    "UserLoginRequest",
     "UserUpdate",
     "DailyPriceLiveInput",
     "DailyPriceLiveResponse",

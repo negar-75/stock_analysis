@@ -55,7 +55,7 @@ class PriceQueryService:
             params.limit,
             params.offset,
         )
-        print(rows)
+
         logger.info(
             "DB query complete | ticker=%s | total=%s | returned=%s",
             params.ticker,

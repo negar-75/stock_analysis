@@ -1,20 +1,23 @@
 from sqlalchemy.orm import Session
-from stock_analysis.api.schemas.user import UserCreate
+from sqlalchemy import delete
+from uuid import UUID
+from stock_analysis.api.schemas.user import UserCreate, UserResponse
 from stock_analysis.db.models import User
-from stock_analysis.db.session import SessionLocal
 from stock_analysis.api.security import get_password_hash
+from sqlalchemy.exc import IntegrityError
+from stock_analysis.core.exceptions import UserAlreadyExistsError
 
 
-class UserRepositiry:
+class UserRepository:
     def __init__(self, db: Session):
         self.db = db
 
-    def user_create(self, user_data: UserCreate):
+    def create(self, user_data: UserCreate) -> User:
         plain_password = user_data.password_1.get_secret_value()
         hashed_password = get_password_hash(plain_password)
         try:
             new_user = User(
-                username=user_data.user_name,
+                user_name=user_data.user_name,
                 phone=user_data.phone,
                 email=user_data.email,
                 hashed_password=hashed_password,
@@ -23,23 +26,20 @@ class UserRepositiry:
             self.db.commit()
             self.db.refresh(new_user)
             return new_user
-        except Exception as e:
+        except IntegrityError:
             self.db.rollback()
-            raise e
+            raise UserAlreadyExistsError()
 
-        # Todo continue creating CRUD class for user
+    def get_by_email(self, email: str) -> User | None:
+        return self.db.query(User).filter(User.email == email).first()
 
+    def get_by_id(self, id: UUID):
+        return self.db.query(User).filter(User.id == id).first()
 
-# user = UserCreate(
-#     user_name="negar",
-#     email="nasirinegar13@gmail.com",
-#     phone="0915582567",
-#     password_1="123456789012",
-#     password_2="123456789012",
-# )
-
-
-# with SessionLocal() as db:
-#     data = UserRepositiry(db)
-#     user = data.user_create(user_data=user)
-#     print(user)
+    def delete_user(self, id: UUID):
+        user = self.get_by_id(id)
+        if not user:
+            return False
+        self.db.delete(user)
+        self.db.commit()
+        return True

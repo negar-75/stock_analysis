@@ -15,3 +15,12 @@ class MarketAPIError(IngestionError):
     """Raised when external market API fails."""
 
     pass
+
+
+# ----------user_Exceptions#----------
+class UserAlreadyExistsError(Exception):
+    pass
+
+
+class InvalidCredentialError(Exception):
+    pass

@@ -46,7 +46,8 @@ class UserCreate(UserBaseModel):
         return v
 
 
-class UserUpdate(BaseModel):
+class UserUpdate(UserBaseModel):
+
     old_password: Optional[SecretStr]
     new_password: Optional[SecretStr]
 
@@ -60,6 +61,15 @@ class UserUpdate(BaseModel):
 # TODO NEED TO FINISH THE PASSWORD UODATE RULE AND CREATE A VALIDATION FOR CREATINF A NEW PASSWORD
 
 
-class UserLogin(BaseModel):
-    user_name: str
+class UserLoginRequest(BaseModel):
+    email: EmailStr
     password: SecretStr
+
+
+class UserLoginResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+
+
+class UserResponse(UserBaseModel):
+    id: UUID

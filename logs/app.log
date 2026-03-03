@@ -252,3 +252,13 @@ error_type
 2026-02-18 18:57:07,098 | INFO | src.services.query.price_ingestion_service | Fetching market data | ticker=AAPL | 2025-01-15 → 2025-01-20
 2026-02-18 18:57:07,098 | ERROR | src.services.query.price_ingestion_service | Market API error | ticker=AAPL | 2025-01-15 → 2025-01-20 | error=API down
 2026-02-18 18:57:07,098 | INFO | src.services.query.price_ingestion_service | Ingestion finished | ticker=AAPL | fetched=10 | inserted=10 | status=Completed with errors
+2026-03-02 21:24:59,057 | INFO | stock_analysis.services.users.users | User string has been created
+2026-03-03 16:30:53,780 | ERROR | stock_analysis.services.users.users | User name or Password already exist
+2026-03-03 16:31:25,879 | ERROR | stock_analysis.services.users.users | User name or Password already exist
+2026-03-03 16:42:10,235 | ERROR | stock_analysis.services.users.users | User name or Email already exist
+2026-03-03 16:42:43,986 | ERROR | stock_analysis.services.users.users | User name or Email already exist
+2026-03-03 16:43:49,546 | INFO | stock_analysis.services.users.users | User strinng has been created
+2026-03-03 17:17:40,807 | INFO | stock_analysis.services.users.users | User negarnasiri has been created
+2026-03-03 17:24:09,240 | INFO | stock_analysis.services.users.users | User string has been created
+2026-03-03 17:24:29,477 | ERROR | stock_analysis.services.users.users | User name or Email already exist
+2026-03-03 21:28:32,617 | INFO | stock_analysis.services.users.users | User negar_nasiri created

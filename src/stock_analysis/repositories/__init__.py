@@ -1,4 +1,4 @@
 from .price import PriceRepository
-from .user import UserRepositiry
+from .user import UserRepository
 
-__all__ = ["PriceRepository", "UserRepositiry"]
+__all__ = ["PriceRepository", "UserRepository"]

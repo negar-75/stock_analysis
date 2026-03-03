@@ -20,9 +20,10 @@ jobs:
 
             - name: Build containers
               run: docker compose build
+            
             - name: Run tests container
               run: docker compose run --rm test
-
+            
             - name: Stop containers
               run: docker compose down
 

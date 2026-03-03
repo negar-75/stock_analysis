@@ -3,7 +3,7 @@ from .dependencies import get_db
 from .schemas import (
     UserBaseModel,
     UserCreate,
-    UserLogin,
+    UserLoginRequest,
     UserUpdate,
     DailyPriceLiveInput,
     DailyPriceLiveResponse,
@@ -19,7 +19,7 @@ __all__ = [
     "get_db",
     "UserBaseModel",
     "UserCreate",
-    "UserLogin",
+    "UserLoginRequest",
     "UserUpdate",
     "DailyPriceLiveInput",
     "DailyPriceLiveResponse",
