@@ -24,3 +24,7 @@ class UserAlreadyExistsError(Exception):
 
 class InvalidCredentialError(Exception):
     pass
+
+
+class UserHasNotFound(Exception):
+    pass

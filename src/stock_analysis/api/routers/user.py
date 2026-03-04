@@ -1,51 +1,68 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from uuid import UUID
-from stock_analysis.api.schemas.user import (
-    UserCreate,
-    UserResponse,
-    UserLoginRequest,
-    UserLoginResponse,
-    UserUpdate
-)
-from sqlalchemy.orm import Session
-from stock_analysis.api.dependencies.db import get_db
 from stock_analysis.services.users.users import UserService
 from stock_analysis.core.exceptions import (
     UserAlreadyExistsError,
     InvalidCredentialError,
+    UserHasNotFound,
 )
-from stock_analysis.api.security import create_access_token
+from stock_analysis.core.security import create_access_token
+from stock_analysis.schemas.user import (
+    UserCreate,
+    UserResponse,
+    UserLoginRequest,
+    UserLoginResponse,
+    UserUpdatePassword,
+)
+from stock_analysis.api.dependencies import get_current_user, get_user_service
+from stock_analysis.db.models.user import User
 
 router = APIRouter()
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=UserResponse)
-def create_user(data: UserCreate, db: Session = Depends(get_db)):
+def create_user(data: UserCreate, service: UserService = Depends(get_user_service)):
     try:
-        created_user = UserService(db).create_user(data)
+        created_user = service.create_user(data)
         return created_user
     except UserAlreadyExistsError:
         raise HTTPException(status_code=409, detail="Username or Email already exists")
 
 
 @router.post("/login", response_model=UserLoginResponse)
-def login(data: UserLoginRequest, db: Session = Depends(get_db)):
+def login(data: UserLoginRequest, service: UserService = Depends(get_user_service)):
     try:
-        founded_user = UserService(db).authenticate_user(data)
-        access_token = create_access_token({"sub": str(founded_user.id)})
+        authenticated_user = service.authenticate_user(data)
+        access_token = create_access_token({"sub": str(authenticated_user.id)})
         return {"access_token": access_token}
     except InvalidCredentialError:
         raise HTTPException(status_code=401, detail="Invalid email or password")
-    
-
-# @router.patch("/{id}")
-# def update_user(data:UserUpdate,db:Session = Depends(get_db)):
 
 
+@router.get("/me", status_code=status.HTTP_200_OK, response_model=UserResponse)
+def get_user(current_user: User = Depends(get_current_user)):
+    return current_user
 
-@router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_user(id: UUID, db: Session = Depends(get_db)):
-    deleted = UserService(db).delete_user(id)
-    if not deleted:
-        raise HTTPException(status_code=404, detail="User has not been found")
-    return {"message": "User deleted successfully"}
+
+@router.patch(
+    "/me/password",
+    status_code=status.HTTP_200_OK,
+    response_model=UserResponse,
+)
+def update_password(
+    data: UserUpdatePassword,
+    service: UserService = Depends(get_user_service),
+    current_user: User = Depends(get_current_user),
+):
+    try:
+        return service.update_password(current_user.id, data)
+    except InvalidCredentialError:
+        raise HTTPException(status_code=401, detail="Old password is incorrect")
+
+
+@router.delete("/me", status_code=status.HTTP_204_NO_CONTENT)
+def delete_user(
+    service: UserService = Depends(get_user_service),
+    current_user: User = Depends(get_current_user),
+):
+    service.delete_user(current_user.id)

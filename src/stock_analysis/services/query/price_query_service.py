@@ -3,7 +3,7 @@ from math import ceil
 import logging
 from stock_analysis.repositories.price import PriceRepository
 from stock_analysis.services.query.price_ingestion_service import PriceIngestionService
-from stock_analysis.api.schemas.price import DailyPriceQueryInput, PaginatedDailyPrices
+from stock_analysis.schemas.price import DailyPriceQueryInput, PaginatedDailyPrices
 
 
 logger = logging.getLogger(__name__)

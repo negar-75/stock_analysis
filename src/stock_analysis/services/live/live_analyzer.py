@@ -1,5 +1,5 @@
 import logging
-from stock_analysis.api.schemas.price import DailyPriceLiveInput, DailyPriceLiveResponse
+from stock_analysis.schemas.price import DailyPriceLiveInput, DailyPriceLiveResponse
 from stock_analysis.core.pipeline_config import DTYPES
 from stock_analysis.core.exceptions import MarketAPIError, NoDataAvailableError
 from stock_analysis.pipelines.ingestions.market_api import Ingestion

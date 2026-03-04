@@ -1,9 +1,8 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import delete
 from uuid import UUID
-from stock_analysis.api.schemas.user import UserCreate, UserResponse
+from stock_analysis.schemas.user import UserCreate
 from stock_analysis.db.models import User
-from stock_analysis.api.security import get_password_hash
+from stock_analysis.core.security import get_password_hash
 from sqlalchemy.exc import IntegrityError
 from stock_analysis.core.exceptions import UserAlreadyExistsError
 
@@ -35,6 +34,13 @@ class UserRepository:
 
     def get_by_id(self, id: UUID):
         return self.db.query(User).filter(User.id == id).first()
+
+    def update_user(self, user: User, data: dict):
+        for key, value in data.items():
+            setattr(user, key, value)
+        self.db.commit()
+        self.db.refresh(user)
+        return user
 
     def delete_user(self, id: UUID):
         user = self.get_by_id(id)

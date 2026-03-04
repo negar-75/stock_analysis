@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, Query
 from typing import Annotated
 from sqlalchemy.orm import Session
 from stock_analysis.api.dependencies.db import get_db
-from stock_analysis.api.schemas.price import (
+from stock_analysis.schemas.price import (
     # PaginatedDailyPrices,
     # DailyPriceQueryInput,
     DailyPriceLiveInput,

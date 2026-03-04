@@ -4,7 +4,6 @@ from pydantic import (
     SecretStr,
     field_validator,
     ConfigDict,
-    model_validator,
 )
 from typing import Optional
 from pydantic_core.core_schema import ValidationInfo
@@ -18,21 +17,28 @@ class UserBaseModel(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 
-class UserCreate(UserBaseModel):
+class PasswordValidationMixin:
+
+    @field_validator("new_password", "password_1", check_fields=False)
+    @classmethod
+    def password_validation(cls, v: SecretStr):
+        value = v.get_secret_value()
+
+        if not value:
+            raise ValueError("Password is required")
+
+        if len(value) < 12:
+            raise ValueError("Password length must be at least 12 characters")
+
+        return v
+
+
+class UserCreate(UserBaseModel, PasswordValidationMixin):
     user_name: str
     email: EmailStr
     phone: str
     password_1: SecretStr
     password_2: SecretStr
-
-    @field_validator("password_1")
-    @classmethod
-    def password_validation(cls, v: SecretStr):
-        if not v.get_secret_value():
-            raise ValueError("Password is required")
-        if len(v.get_secret_value()) < 12:
-            raise ValueError("Password length must be 12 character")
-        return v
 
     @field_validator("password_2")
     @classmethod
@@ -46,19 +52,10 @@ class UserCreate(UserBaseModel):
         return v
 
 
-class UserUpdate(UserBaseModel):
+class UserUpdatePassword(BaseModel, PasswordValidationMixin):
 
-    old_password: Optional[SecretStr]
-    new_password: Optional[SecretStr]
-
-    @model_validator(mode="after")
-    def check_old_password_exis(self):
-        if self.new_password and not self.old_password:
-            raise ValueError("Old password is required to set a new password")
-        return self
-
-
-# TODO NEED TO FINISH THE PASSWORD UODATE RULE AND CREATE A VALIDATION FOR CREATINF A NEW PASSWORD
+    old_password: SecretStr
+    new_password: SecretStr
 
 
 class UserLoginRequest(BaseModel):
