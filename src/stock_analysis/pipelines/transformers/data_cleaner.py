@@ -1,4 +1,15 @@
+"""
+Data cleaning utilities for stock price DataFrames.
+
+Provides functions for sorting, datetime conversion, deduplication,
+and column normalization.
+"""
+
+import logging
+
 import pandas as pd
+
+logger = logging.getLogger(__name__)
 
 
 def sort_by_column(data: pd.DataFrame, col_name: str) -> pd.DataFrame:
@@ -12,7 +23,7 @@ def sort_by_column(data: pd.DataFrame, col_name: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Sorted DataFrame.
     """
-    return data.sort_values(by=f"{col_name}")
+    return data.sort_values(by=col_name)
 
 
 def convert_to_datetime(data: pd.DataFrame, col_name: str):
@@ -27,14 +38,14 @@ def convert_to_datetime(data: pd.DataFrame, col_name: str):
         None: The DataFrame is modified in place.
     """
     try:
-        data[f"{col_name}"] = pd.to_datetime(
+        data[col_name] = pd.to_datetime(
             data[col_name],
             format="%Y-%m-%d",
             errors="raise",
         ).dt.date
         return True
     except (ValueError, TypeError) as e:
-        print(f"Data conversion error :{e}")
+        logger.error("Data conversion error: %s", e)
         return False
 
 
@@ -51,7 +62,7 @@ def drop_duplicates(data: pd.DataFrame, col_name: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: DataFrame with duplicates removed.
     """
-    return data.drop_duplicates(subset=[f"{col_name}"], keep="first")
+    return data.drop_duplicates(subset=[col_name], keep="first")
 
 
 def col_name_normalization(data: pd.DataFrame) -> list[str]:

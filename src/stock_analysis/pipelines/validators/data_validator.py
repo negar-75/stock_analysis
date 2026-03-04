@@ -4,6 +4,8 @@ Data validation module for stock price data.
 Provides validation functions to ensure data quality before processing.
 """
 
+import logging
+
 import pandas as pd
 from pandas.api.types import (
     is_datetime64_any_dtype,
@@ -11,6 +13,8 @@ from pandas.api.types import (
     is_integer_dtype,
     is_object_dtype,
 )
+
+logger = logging.getLogger(__name__)
 
 TYPE_CHECKS = {
     "datetime": is_datetime64_any_dtype,
@@ -33,7 +37,7 @@ def required_columns_exist(data: pd.DataFrame, columns_list: list) -> bool:
     """
     for col in columns_list:
         if col not in data.columns:
-            print(col, "column existance issue")
+            logger.warning("Column '%s' does not exist", col)
             return False
     return True
 
@@ -56,8 +60,10 @@ def check_column_type(data: pd.DataFrame, columns_type: dict) -> bool:
         )
 
         if checker is None or not checker(data[col]):
-            print(
-                f"data type is wrong in column {col}, current type is {data[col].dtype}"
+            logger.warning(
+                "Data type is wrong in column '%s', current type is %s",
+                col,
+                data[col].dtype,
             )
             return False
 
@@ -75,13 +81,13 @@ def check_corrupted_values(data: pd.DataFrame) -> bool:
         bool: False if any null or negative value exists, True otherwise.
     """
     for col in data.columns:
-        if pd.isnull(data[f"{col}"]).any():
-            print(f"column {col} has null values")
+        if pd.isnull(data[col]).any():
+            logger.warning("Column '%s' has null values", col)
             return False
     numeric_cols = data.select_dtypes(include=["number"]).columns
     for num_cols in numeric_cols:
-        if (data[f"{num_cols}"] < 0).any():
-            print(f"column {num_cols} has negative values")
+        if (data[num_cols] < 0).any():
+            logger.warning("Column '%s' has negative values", num_cols)
             return False
     return True
 
@@ -100,10 +106,10 @@ def check_logical_consistency(data: pd.DataFrame) -> bool:
     highest = data[["Open", "Close", "High", "Low"]].max(axis=1)
 
     if not (lowest == data["Low"]).all():
-        print("Low is not the the minimum price in the row")
+        logger.warning("Low is not the minimum price in the row")
         return False
     if not (highest == data["High"]).all():
-        print("High is not the the maximum price in the row")
+        logger.warning("High is not the maximum price in the row")
         return False
     return True
 

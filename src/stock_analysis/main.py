@@ -1,3 +1,9 @@
+"""
+Stock Analysis FastAPI application entry point.
+
+Creates and configures the FastAPI app with routers and logging.
+"""
+
 from fastapi import FastAPI
 from stock_analysis.core.logging_config import setup_logging
 from stock_analysis.api.routers.routers import api_routers

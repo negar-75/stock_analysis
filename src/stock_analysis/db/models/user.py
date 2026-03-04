@@ -4,6 +4,8 @@ from stock_analysis.db.models.base import Base
 
 
 class User(Base):
+    """SQLAlchemy model for application users."""
+
     __tablename__ = "users"
     id = Column(
         UUID(as_uuid=True),

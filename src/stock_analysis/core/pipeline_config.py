@@ -1,3 +1,10 @@
+"""
+Pipeline configuration for stock data.
+
+Defines expected column names and dtypes for raw market data
+before validation and feature engineering.
+"""
+
 DTYPES = {
     "Date": "datetime64[ns, America/New_York]",
     "Ticker": "object",

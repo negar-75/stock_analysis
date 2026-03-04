@@ -13,6 +13,8 @@ logger = logging.getLogger(__name__)
 
 
 class PriceIngestionService:
+    """Service for ingesting stock price data from market API and storing in the database."""
+
     def __init__(self, db: Session):
         self.db = db
         self.repository = PriceRepository(db)
@@ -20,7 +22,7 @@ class PriceIngestionService:
     def ingest_and_store_price(
         self,
         ticker: str,
-        ranges: List[[Tuple[date, date]]],
+        ranges: List[Tuple[date, date]],
         volatility_window: int = 15,
         moving_window: int = 15,
     ):

@@ -2,7 +2,7 @@
 Database package.
 
 Usage:
-    from src.db import get_engine, get_db, DailyPrices, write_data_to_db
+    from stock_analysis.db import get_engine, get_db, DailyPrices, User
 """
 
 from .config import get_db_url

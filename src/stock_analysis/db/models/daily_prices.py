@@ -12,6 +12,8 @@ from stock_analysis.db.models.base import Base
 
 
 class DailyPrices(Base):
+    """SQLAlchemy model for daily stock price data with technical indicators."""
+
     __tablename__ = "daily_prices"
 
     id = Column(Integer, primary_key=True)

@@ -1,3 +1,5 @@
+from datetime import date
+
 import pandas as pd
 import pytest
 from stock_analysis.pipelines.transformers.data_cleaner import (
@@ -126,7 +128,5 @@ def test_clean_data_right_input():
         "volume",
     ]
     assert len(result) == 2
-    print(result["date"].tolist())
-    assert result["date"].tolist() == list(
-        pd.to_datetime(["2020-01-01", "2020-01-02"]).date
-    )  #
+    expected_dates = [date(2020, 1, 1), date(2020, 1, 2)]
+    assert result["date"].tolist() == expected_dates

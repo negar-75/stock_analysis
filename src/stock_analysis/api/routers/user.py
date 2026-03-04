@@ -4,7 +4,7 @@ from stock_analysis.services.users.users import UserService
 from stock_analysis.core.exceptions import (
     UserAlreadyExistsError,
     InvalidCredentialError,
-    UserHasNotFound,
+    UserNotFound,
 )
 from stock_analysis.core.security import create_access_token
 from stock_analysis.schemas.user import (

@@ -8,10 +8,13 @@ from stock_analysis.core.exceptions import UserAlreadyExistsError
 
 
 class UserRepository:
+    """Repository for user CRUD operations."""
+
     def __init__(self, db: Session):
         self.db = db
 
     def create(self, user_data: UserCreate) -> User:
+        """Create a new user. Raises UserAlreadyExistsError on duplicate email/username."""
         plain_password = user_data.password_1.get_secret_value()
         hashed_password = get_password_hash(plain_password)
         try:
@@ -32,8 +35,9 @@ class UserRepository:
     def get_by_email(self, email: str) -> User | None:
         return self.db.query(User).filter(User.email == email).first()
 
-    def get_by_id(self, id: UUID):
-        return self.db.query(User).filter(User.id == id).first()
+    def get_by_id(self, user_id: UUID):
+        """Fetch a user by UUID. Returns None if not found."""
+        return self.db.query(User).filter(User.id == user_id).first()
 
     def update_user(self, user: User, data: dict):
         for key, value in data.items():
@@ -42,8 +46,9 @@ class UserRepository:
         self.db.refresh(user)
         return user
 
-    def delete_user(self, id: UUID):
-        user = self.get_by_id(id)
+    def delete_user(self, user_id: UUID):
+        """Delete a user by UUID. Returns False if user not found."""
+        user = self.get_by_id(user_id)
         if not user:
             return False
         self.db.delete(user)

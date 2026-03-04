@@ -14,12 +14,15 @@ from stock_analysis.db.models.daily_prices import DailyPrices
 
 
 class PriceRepository:
+    """Repository for querying and inserting daily price data."""
+
     def __init__(self, db: Session):
         self.db = db
 
     def fetch_prices(
         self, ticker: str, start_date: date, end_date: date, limit: int, offset: int
     ):
+        """Fetch paginated daily prices for a ticker within a date range."""
         return (
             self.db.query(DailyPrices)
             .filter(
@@ -39,6 +42,7 @@ class PriceRepository:
         start_date: date,
         end_date: date,
     ) -> int:
+        """Count total daily prices for a ticker within a date range."""
         return (
             self.db.query(func.count(DailyPrices.id))
             .filter(
@@ -50,6 +54,7 @@ class PriceRepository:
         )
 
     def bulk_insert(self, data: pd.DataFrame) -> int:
+        """Insert price records in bulk, skipping conflicts on ticker+date."""
         records = data.to_dict(orient="records")
 
         stmt = insert(DailyPrices).values(records)
@@ -60,6 +65,7 @@ class PriceRepository:
         return result.rowcount
 
     def get_min_max_date(self, ticker: str) -> Tuple[Optional[date], Optional[date]]:
+        """Get the earliest and latest date for a ticker in the database."""
         result = (
             self.db.query(func.min(DailyPrices.date), func.max(DailyPrices.date))
             .filter(DailyPrices.ticker == ticker)
@@ -69,7 +75,8 @@ class PriceRepository:
 
     def get_missing_data_range(
         self, ticker: str, start_date: date, end_date: date
-    ) -> List[Optional[Tuple[date, date]]]:
+    ) -> List[Tuple[date, date]]:
+        """Return date ranges that are missing from the database for the given ticker."""
         min_date, max_date = self.get_min_max_date(ticker)
         if min_date is None or max_date is None:
             return [(start_date, end_date)]

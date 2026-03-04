@@ -1,4 +1,11 @@
-# ----------Ingestion_Exceptions#----------
+"""
+Custom exceptions for the stock analysis application.
+
+Includes ingestion errors and user-related errors.
+"""
+
+
+# ---------- Ingestion Exceptions ----------
 class IngestionError(Exception):
     """Base exception for ingestion errors."""
 
@@ -17,14 +24,22 @@ class MarketAPIError(IngestionError):
     pass
 
 
-# ----------user_Exceptions#----------
+# ---------- User Exceptions ----------
+
+
 class UserAlreadyExistsError(Exception):
+    """Raised when attempting to create a user that already exists."""
+
     pass
 
 
 class InvalidCredentialError(Exception):
+    """Raised when authentication credentials are invalid."""
+
     pass
 
 
-class UserHasNotFound(Exception):
+class UserNotFound(Exception):
+    """Raised when a requested user does not exist."""
+
     pass
