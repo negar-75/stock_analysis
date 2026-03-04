@@ -9,8 +9,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      SECRET_KEY: ${SECRET_KEY}
-      ALGORITHM: ${ALGORITHM}
+      
     ports:
       - "5432:5432"
   db_test:
@@ -20,8 +19,7 @@ services:
       POSTGRES_DB: stock_analysis_test
       POSTGRES_USER: stock_user
       POSTGRES_PASSWORD: 7648
-      SECRET_KEY: ${SECRET_KEY}
-      ALGORITHM: ${ALGORITHM}
+     
     ports:
       - "5433:5432"
   
@@ -40,6 +38,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      SECRET_KEY: ${SECRET_KEY}
+      ALGORITHM: ${ALGORITHM}
   test:
     build:
       context: .
@@ -52,3 +52,5 @@ services:
       POSTGRES_DB: stock_analysis_test
       POSTGRES_USER: stock_user
       POSTGRES_PASSWORD: 7648
+      SECRET_KEY: ${SECRET_KEY}
+      ALGORITHM: ${ALGORITHM}
