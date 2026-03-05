@@ -128,5 +128,5 @@ def test_clean_data_right_input():
         "volume",
     ]
     assert len(result) == 2
-    expected_dates = [date(2020, 1, 1), date(2020, 1, 2)]
+    expected_dates = pd.to_datetime(["2020-01-01", "2020-01-02"]).tolist()
     assert result["date"].tolist() == expected_dates

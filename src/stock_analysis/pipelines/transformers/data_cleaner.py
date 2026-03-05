@@ -42,7 +42,7 @@ def convert_to_datetime(data: pd.DataFrame, col_name: str):
             data[col_name],
             format="%Y-%m-%d",
             errors="raise",
-        ).dt.date
+        )
         return True
     except (ValueError, TypeError) as e:
         logger.error("Data conversion error: %s", e)

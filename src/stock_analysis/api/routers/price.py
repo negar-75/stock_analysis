@@ -9,7 +9,7 @@ from typing import Annotated
 from fastapi import APIRouter, Query
 
 from stock_analysis.schemas.price import DailyPriceLiveInput, DailyPriceLiveResponse
-from stock_analysis.services.live.live_analyzer import OnDemandAnalysisService
+from stock_analysis.services.price.live_analyzer import OnDemandAnalysisService
 
 
 router = APIRouter()

@@ -1,56 +1,72 @@
-from sqlalchemy.orm import Session
 from uuid import UUID
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.exc import IntegrityError
+
 from stock_analysis.schemas.user import UserCreate
 from stock_analysis.db.models import User
 from stock_analysis.core.security import get_password_hash
-from sqlalchemy.exc import IntegrityError
 from stock_analysis.core.exceptions import UserAlreadyExistsError
 
 
 class UserRepository:
     """Repository for user CRUD operations."""
 
-    def __init__(self, db: Session):
+    def __init__(self, db: AsyncSession):
         self.db = db
 
-    def create(self, user_data: UserCreate) -> User:
+    async def create(self, user_data: UserCreate) -> User:
         """Create a new user. Raises UserAlreadyExistsError on duplicate email/username."""
+
         plain_password = user_data.password_1.get_secret_value()
         hashed_password = get_password_hash(plain_password)
+
+        new_user = User(
+            user_name=user_data.user_name,
+            phone=user_data.phone,
+            email=user_data.email,
+            hashed_password=hashed_password,
+        )
+
         try:
-            new_user = User(
-                user_name=user_data.user_name,
-                phone=user_data.phone,
-                email=user_data.email,
-                hashed_password=hashed_password,
-            )
             self.db.add(new_user)
-            self.db.commit()
-            self.db.refresh(new_user)
+            await self.db.commit()
+            await self.db.refresh(new_user)
             return new_user
+
         except IntegrityError:
-            self.db.rollback()
+            await self.db.rollback()
             raise UserAlreadyExistsError()
 
-    def get_by_email(self, email: str) -> User | None:
-        return self.db.query(User).filter(User.email == email).first()
+    async def get_by_email(self, email: str) -> User | None:
+        stmt = select(User).where(User.email == email)
+        result = await self.db.execute(stmt)
+        return result.scalar_one_or_none()
 
-    def get_by_id(self, user_id: UUID):
-        """Fetch a user by UUID. Returns None if not found."""
-        return self.db.query(User).filter(User.id == user_id).first()
+    async def get_by_id(self, user_id: UUID) -> User | None:
+        """Fetch a user by UUID."""
+        stmt = select(User).where(User.id == user_id)
+        result = await self.db.execute(stmt)
+        return result.scalar_one_or_none()
 
-    def update_user(self, user: User, data: dict):
+    async def update_user(self, user: User, data: dict) -> User:
         for key, value in data.items():
             setattr(user, key, value)
-        self.db.commit()
-        self.db.refresh(user)
+
+        await self.db.commit()
+        await self.db.refresh(user)
+
         return user
 
-    def delete_user(self, user_id: UUID):
-        """Delete a user by UUID. Returns False if user not found."""
-        user = self.get_by_id(user_id)
+    async def delete_user(self, user_id: UUID) -> bool:
+        """Delete a user by UUID."""
+
+        user = await self.get_by_id(user_id)
+
         if not user:
             return False
-        self.db.delete(user)
-        self.db.commit()
+
+        await self.db.delete(user)
+        await self.db.commit()
+
         return True

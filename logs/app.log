@@ -263,3 +263,47 @@ error_type
 2026-03-03 17:24:29,477 | ERROR | stock_analysis.services.users.users | User name or Email already exist
 2026-03-03 21:28:32,617 | INFO | stock_analysis.services.users.users | User negar_nasiri created
 2026-03-04 08:13:01,522 | INFO | stock_analysis.services.users.users | User negar created
+2026-03-05 09:32:58,128 | INFO | stock_analysis.services.live.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 09:32:58,137 | INFO | stock_analysis.services.live.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 09:32:58,771 | INFO | stock_analysis.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-03-05 09:32:58,773 | INFO | stock_analysis.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-03-05 09:32:58,774 | INFO | stock_analysis.services.live.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 09:32:58,785 | ERROR | stock_analysis.services.live.live_analyzer | Unexpected error | ticker=AAPL | 2025-01-01 → 2025-01-31
+Traceback (most recent call last):
+  File "/Users/negarnasiri/Documents/python/stock_analysis/src/stock_analysis/services/live/live_analyzer.py", line 71, in get_price
+    self.redis.set(build_stock_cache_key(params), data)
+  File "/Users/negarnasiri/Documents/python/stock_analysis/src/stock_analysis/cache/service.py", line 14, in set
+    self.redis.set(key, json.dump(value), ex=ttl)
+                        ^^^^^^^^^^^^^^^^
+TypeError: dump() missing 1 required positional argument: 'fp'
+2026-03-05 09:44:24,591 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 09:44:24,600 | INFO | stock_analysis.services.price.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 09:44:25,348 | INFO | stock_analysis.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-03-05 09:44:25,351 | INFO | stock_analysis.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-03-05 09:44:25,353 | INFO | stock_analysis.services.price.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 09:44:25,366 | ERROR | stock_analysis.services.price.live_analyzer | Unexpected error | ticker=AAPL | 2025-01-01 → 2025-01-31
+Traceback (most recent call last):
+  File "/Users/negarnasiri/Documents/python/stock_analysis/src/stock_analysis/services/price/live_analyzer.py", line 71, in get_price
+    self.redis.set(build_stock_cache_key(params), data)
+  File "/Users/negarnasiri/Documents/python/stock_analysis/src/stock_analysis/cache/service.py", line 14, in set
+    self.redis.set(key, json.dumps(value), ex=ttl)
+                        ^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type date is not JSON serializable
+2026-03-05 09:59:10,865 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 09:59:10,879 | INFO | stock_analysis.services.price.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 09:59:11,541 | INFO | stock_analysis.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-03-05 09:59:11,544 | INFO | stock_analysis.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-03-05 09:59:11,546 | INFO | stock_analysis.services.price.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 10:00:27,993 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 10:00:27,999 | INFO | stock_analysis.services.price.live_analyzer | key found | ticker=AAPL | 2025-01-01 → 2025-01-31 

@@ -1,11 +1,9 @@
 from stock_analysis.db.engine import get_engine
-from sqlalchemy.orm import sessionmaker
 
+from sqlalchemy.ext.asyncio import async_sessionmaker, AsyncSession
 
 engine = get_engine("prod")
 
-SessionLocal = sessionmaker(
-    bind=engine,
-    autoflush=False,
-    autocommit=False,
+SessionLocal = async_sessionmaker(
+    bind=engine, class_=AsyncSession, expire_on_commit=False
 )

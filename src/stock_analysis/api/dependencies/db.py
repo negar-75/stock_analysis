@@ -1,16 +1,13 @@
-from sqlalchemy.orm import Session
-from typing import Generator
 from stock_analysis.db.session import SessionLocal
 
 
-def get_db() -> Generator[Session, None, None]:
-    """
-    Dependency function for FastAPI.
-    Yields a database session.
-    """
+from typing import AsyncGenerator
+from sqlalchemy.ext.asyncio import AsyncSession
 
-    db: Session = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+
+async def get_db() -> AsyncGenerator[AsyncSession, None]:
+    """
+    FastAPI dependency that provides a database session.
+    """
+    async with SessionLocal() as session:
+        yield session

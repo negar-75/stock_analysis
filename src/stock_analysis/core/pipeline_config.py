@@ -6,7 +6,7 @@ before validation and feature engineering.
 """
 
 DTYPES = {
-    "Date": "datetime64[ns, America/New_York]",
+    "Date": "datetime64[ns]",
     "Ticker": "object",
     "Open": "float64",
     "High": "float64",

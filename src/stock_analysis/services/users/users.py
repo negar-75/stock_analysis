@@ -7,7 +7,8 @@ Handles user creation, authentication, password updates, and deletion.
 import logging
 from uuid import UUID
 
-from sqlalchemy.orm import Session
+from sqlalchemy.ext.asyncio import AsyncSession
+
 
 from stock_analysis.core.exceptions import InvalidCredentialError, UserNotFound
 from stock_analysis.core.security import get_password_hash, verify_password
@@ -25,19 +26,19 @@ logger = logging.getLogger(__name__)
 class UserService:
     """Service for user-related business logic."""
 
-    def __init__(self, db: Session):
+    def __init__(self, db: AsyncSession):
         self.db = db
         self.repository = UserRepository(db)
 
-    def create_user(self, data: UserCreate):
+    async def create_user(self, data: UserCreate):
         """Create a new user with hashed password."""
-        user = self.repository.create(data)
+        user = await self.repository.create(data)
         logger.info("User %s created", data.user_name)
         return user
 
-    def authenticate_user(self, data: UserLoginRequest):
+    async def authenticate_user(self, data: UserLoginRequest):
         """Authenticate user by email and password. Raises InvalidCredentialError on failure."""
-        user = self.repository.get_by_email(data.email)
+        user = await self.repository.get_by_email(data.email)
         if not user or not verify_password(
             data.password.get_secret_value(),
             user.hashed_password,
@@ -46,11 +47,11 @@ class UserService:
 
         return user
 
-    def get_user(self, user_id: UUID):
+    async def get_user(self, user_id: UUID):
         """Fetch a user by ID. Returns None if not found."""
-        return self.repository.get_by_id(user_id)
+        return await self.repository.get_by_id(user_id)
 
-    def update_password(self, user_id: UUID, data: UserUpdatePassword):
+    async def update_password(self, user_id: UUID, data: UserUpdatePassword):
         """Update user password. Raises UserNotFound or InvalidCredentialError on failure."""
         user = self.get_user(user_id)
         if not user:
@@ -61,8 +62,10 @@ class UserService:
         if not verify_password(old_password, user.hashed_password):
             raise InvalidCredentialError("Your old password is incorrect")
         hashed_password = get_password_hash(new_password)
-        return self.repository.update_user(user, {"hashed_password": hashed_password})
+        return await self.repository.update_user(
+            user, {"hashed_password": hashed_password}
+        )
 
-    def delete_user(self, user_id: UUID):
+    async def delete_user(self, user_id: UUID):
         """Delete a user by ID. Returns False if user not found."""
-        return self.repository.delete_user(user_id)
+        return await self.repository.delete_user(user_id)

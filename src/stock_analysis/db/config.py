@@ -8,10 +8,10 @@ def get_db_url(env: str) -> str:
     env_file = root / f".env.local.{env}"
     load_dotenv(env_file)
 
-    return (
-        f"postgresql+psycopg2://{os.environ['POSTGRES_USER']}:"
-        f"{os.environ['POSTGRES_PASSWORD']}@"
-        f"{os.environ['POSTGRES_HOST']}:"
-        f"{os.environ['POSTGRES_PORT']}/"
-        f"{os.environ['POSTGRES_DB']}"
-    )
+    user = os.getenv("POSTGRES_USER")
+    password = os.getenv("POSTGRES_PASSWORD")
+    host = os.getenv("POSTGRES_HOST")
+    port = os.getenv("POSTGRES_PORT")
+    db = os.getenv("POSTGRES_DB")
+
+    return f"postgresql+asyncpg://{user}:{password}@{host}:{port}/{db}"
