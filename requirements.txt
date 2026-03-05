@@ -12,4 +12,6 @@ psycopg2-binary
 pydantic[email]==2.12.5
 uvicorn
 gunicorn
+redis
+asyncpg
 

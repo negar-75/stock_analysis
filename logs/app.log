@@ -307,3 +307,22 @@ TypeError: Object of type date is not JSON serializable
 2026-03-05 09:59:11,546 | INFO | stock_analysis.services.price.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
 2026-03-05 10:00:27,993 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
 2026-03-05 10:00:27,999 | INFO | stock_analysis.services.price.live_analyzer | key found | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 11:21:09,957 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 11:21:09,967 | INFO | stock_analysis.services.price.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 11:21:10,627 | INFO | stock_analysis.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-03-05 11:21:10,628 | INFO | stock_analysis.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-03-05 11:21:10,629 | INFO | stock_analysis.services.price.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 11:21:21,805 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 11:21:21,812 | INFO | stock_analysis.services.price.live_analyzer | key found | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 11:21:24,145 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 11:21:24,152 | INFO | stock_analysis.services.price.live_analyzer | key found | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 14:08:03,145 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 14:09:16,899 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 14:10:53,707 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 14:10:53,713 | INFO | stock_analysis.services.price.live_analyzer | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 14:10:54,357 | INFO | stock_analysis.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-03-05 14:10:54,359 | INFO | stock_analysis.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-03-05 14:10:54,360 | INFO | stock_analysis.services.price.live_analyzer | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-05 14:11:09,004 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 14:11:09,011 | INFO | stock_analysis.services.price.live_analyzer | key found | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-05 14:11:55,078 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
