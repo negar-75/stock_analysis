@@ -2,7 +2,6 @@ from .user import UserBaseModel, UserCreate, UserLoginRequest, UserUpdatePasswor
 from .price import (
     DailyPriceLiveInput,
     DailyPriceLiveResponse,
-    DailyPriceQueryInput,
     DailyPriceResponse,
 )
 
@@ -14,6 +13,5 @@ __all__ = [
     "UserUpdatePassword",
     "DailyPriceLiveInput",
     "DailyPriceLiveResponse",
-    "DailyPriceQueryInput",
     "DailyPriceResponse",
 ]

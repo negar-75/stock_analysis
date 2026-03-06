@@ -32,6 +32,7 @@ class UserService:
 
     async def create_user(self, data: UserCreate):
         """Create a new user with hashed password."""
+
         user = await self.repository.create(data)
         logger.info("User %s created", data.user_name)
         return user
@@ -53,7 +54,7 @@ class UserService:
 
     async def update_password(self, user_id: UUID, data: UserUpdatePassword):
         """Update user password. Raises UserNotFound or InvalidCredentialError on failure."""
-        user = self.get_user(user_id)
+        user = await self.get_user(user_id)
         if not user:
             raise UserNotFound()
         updated_data = data.model_dump(exclude_unset=True)

@@ -12,11 +12,12 @@ from stock_analysis.schemas.price import DailyPriceLiveInput, DailyPriceLiveResp
 from stock_analysis.services.price.live_analyzer import OnDemandAnalysisService
 
 
+
 router = APIRouter()
 
 
 @router.get("/", response_model=DailyPriceLiveResponse)
-def get_prices(
+async def get_prices(
     params: Annotated[DailyPriceLiveInput, Query()],
 ) -> DailyPriceLiveResponse:
     """
@@ -24,4 +25,4 @@ def get_prices(
 
     Returns live analysis with technical indicators (returns, volatility, etc.).
     """
-    return OnDemandAnalysisService().get_price(params)
+    return await OnDemandAnalysisService().get_price(params)

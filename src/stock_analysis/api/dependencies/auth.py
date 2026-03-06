@@ -12,7 +12,7 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 import jwt
 from dotenv import load_dotenv
 
-from .service import get_user_service
+from .common import get_user_service
 from stock_analysis.services.users.users import UserService
 from stock_analysis.db.models.user import User
 
@@ -25,7 +25,7 @@ SECRET_KEY = os.environ["SECRET_KEY"]
 ALGORITHM = os.environ.get("ALGORITHM", "HS256")
 
 
-def get_current_user(
+async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
     service: UserService = Depends(get_user_service),
 ) -> User:
@@ -48,7 +48,7 @@ def get_current_user(
     except jwt.PyJWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
 
-    user = service.get_user(UUID(user_id))
+    user = await service.get_user(UUID(user_id))
 
     if not user:
         raise HTTPException(status_code=401, detail="User not found")

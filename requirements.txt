@@ -5,7 +5,7 @@ pydantic_core==2.41.5
 PyJWT==2.11.0
 pytest==8.4.2
 python-dotenv==1.2.1
-python_bcrypt==0.3.2
+bcrypt==5.0.0
 SQLAlchemy==2.0.46
 yfinance==1.1.0
 psycopg2-binary
@@ -14,4 +14,5 @@ uvicorn
 gunicorn
 redis
 asyncpg
-
+pydantic_settings
+alembic

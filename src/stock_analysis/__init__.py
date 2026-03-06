@@ -4,7 +4,7 @@ from .api import (
     get_db,
     get_prices,
 )
-from .db import get_db_url, get_engine, engine, SessionLocal, Base, DailyPrices, User
+from .db import engine, SessionLocal, Base, User
 from .pipelines import (
     data_validation,
     clean_data,
@@ -25,12 +25,9 @@ __all__ = [
     "UserRepository",
     "get_db",
     "get_prices",
-    "get_db_url",
-    "get_engine",
     "engine",
     "SessionLocal",
     "Base",
-    "DailyPrices",
     "User",
     "data_validation",
     "clean_data",

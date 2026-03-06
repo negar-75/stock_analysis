@@ -1,9 +1,7 @@
 import pytest
 import pandas as pd
-from sqlalchemy import func
 from stock_analysis.core.pipeline_config import DTYPES
 from stock_analysis.pipelines.orchestrators.stock_pipeline import StockDataPipeline
-from stock_analysis.db.models.daily_prices import DailyPrices
 
 
 @pytest.fixture

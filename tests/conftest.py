@@ -1,34 +1,41 @@
 import pytest
 import pandas as pd
-from sqlalchemy.orm import sessionmaker
-from stock_analysis.db.models.daily_prices import Base
-from stock_analysis.db.engine import get_engine
+from sqlalchemy.ext.asyncio import (
+    create_async_engine,
+    async_sessionmaker,
+)
+from stock_analysis.db.models import Base
+from stock_analysis.core.config import Settings
 
 
 @pytest.fixture(scope="session")
-def test_engine():
-    engine = get_engine("test")
+async def test_engine():
+    settings = Settings(_env_file=".env.test")
+
+    engine = create_async_engine(settings.database_url)
+
     yield engine
-    engine.dispose()
+
+    await engine.dispose()
 
 
-@pytest.fixture
-def test_setup_db(test_engine):
-    Base.metadata.create_all(bind=test_engine)
+@pytest.fixture(scope="session")
+async def test_setup_db(test_engine):
+    async with test_engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
     yield
-    Base.metadata.drop_all(bind=test_engine)
+
+    async with test_engine.begin() as conn:
+        await conn.run_sync(Base.metadata.drop_all)
 
 
 @pytest.fixture
-def test_setup_session(test_engine, test_setup_db):
-    TestingSessionLocal = sessionmaker(
-        autocommit=False, autoflush=False, bind=test_engine
-    )
-    session = TestingSessionLocal()
-    try:
+async def test_setup_session(test_engine, test_setup_db):
+    SessionLocal = async_sessionmaker(test_engine, expire_on_commit=False)
+
+    async with SessionLocal() as session:
         yield session
-    finally:
-        session.close()
 
 
 @pytest.fixture

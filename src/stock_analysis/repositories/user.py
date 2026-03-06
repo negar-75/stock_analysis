@@ -18,6 +18,9 @@ class UserRepository:
     async def create(self, user_data: UserCreate) -> User:
         """Create a new user. Raises UserAlreadyExistsError on duplicate email/username."""
 
+        user = await self.get_by_email(user_data.email)
+        if user:
+            raise UserAlreadyExistsError()
         plain_password = user_data.password_1.get_secret_value()
         hashed_password = get_password_hash(plain_password)
 

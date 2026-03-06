@@ -1,10 +1,6 @@
 from sqlalchemy.ext.asyncio import create_async_engine
 
-from stock_analysis.db.config import get_db_url
+from stock_analysis.core.config import settings
 
 
-def get_engine(env: str):
-    """
-    Create and return a SQLAlchemy engine for PostgreSQL.
-    """
-    return create_async_engine(get_db_url(env))
+engine = create_async_engine(settings.database_url)

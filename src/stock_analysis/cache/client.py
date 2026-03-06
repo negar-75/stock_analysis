@@ -1,4 +1,4 @@
-import redis
-import os
+import redis.asyncio as redis
+from stock_analysis.core.config import settings
 
-redis_client = redis.Redis.from_url(os.getenv("REDIS_URL") or "redis://redis:6379/0", decode_responses=True)
+redis_client = redis.Redis.from_url(settings.redis_url, decode_responses=True)
