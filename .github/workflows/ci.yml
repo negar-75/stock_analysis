@@ -8,9 +8,8 @@ jobs:
     test_and_build:
         runs-on: ubuntu-latest
         env:
-          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
-          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         steps:
             - name: Checkout repo
               uses: actions/checkout@v4
