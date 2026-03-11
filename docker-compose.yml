@@ -70,5 +70,6 @@ services:
       POSTGRES_PASSWORD: 1234
       POSTGRES_DB: stock_analysis_test
       POSTGRES_USER: stock_user_test
+      FINNHUB_API_KEY: ${FINNHUB_API_KEY}
 volumes:
   cache:
