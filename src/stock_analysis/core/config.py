@@ -1,4 +1,7 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parents[3]
 
 
 class Settings(BaseSettings):
@@ -12,8 +15,9 @@ class Settings(BaseSettings):
     algorithm: str
     rate_limit: int = 10
     rate_limit_window: int = 60
+    finnhub_api_key:str
 
-    model_config = SettingsConfigDict(env_file=".env")
+    model_config = SettingsConfigDict(env_file=BASE_DIR / ".env",case_sensitive=False)
 
     @property
     def database_url(self) -> str:

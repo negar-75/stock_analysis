@@ -13,7 +13,7 @@ import jwt
 from dotenv import load_dotenv
 
 from .common import get_user_service
-from stock_analysis.services.users.users import UserService
+from stock_analysis.services.users.users_service import UserService
 from stock_analysis.db.models.user import User
 
 

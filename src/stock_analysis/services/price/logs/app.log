@@ -1,0 +1,15 @@
+2026-03-10 09:10:00,114 | INFO | stock_analysis.services.price.historical_service | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-10 09:10:00,118 | INFO | stock_analysis.services.price.historical_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-10 09:10:00,799 | INFO | stock_analysis.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-03-10 09:10:00,801 | INFO | stock_analysis.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-03-10 09:10:00,802 | INFO | stock_analysis.services.price.historical_service | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-10 09:51:25,295 | INFO | stock_analysis.services.price.historical_service | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-10 09:51:25,299 | INFO | stock_analysis.services.price.historical_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-10 09:51:26,071 | INFO | stock_analysis.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-03-10 09:51:26,073 | INFO | stock_analysis.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-03-10 09:51:26,074 | INFO | stock_analysis.services.price.historical_service | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-10 10:38:44,427 | INFO | stock_analysis.services.price.historical_service | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-10 10:38:44,431 | INFO | stock_analysis.services.price.historical_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-10 10:38:45,100 | INFO | stock_analysis.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-03-10 10:38:45,102 | INFO | stock_analysis.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-03-10 10:38:45,103 | INFO | stock_analysis.services.price.historical_service | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31

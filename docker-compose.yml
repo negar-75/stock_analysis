@@ -60,7 +60,7 @@ services:
       - redis
     environment:
       POSTGRES_HOST: db_test
-      POSTGRES_PORT: 5432
+      POSTGRES_PORT: 5433
       ALGORITHM: HS256
       REDIS_URL: redis://redis:6379/0
       RATE_LIMIT: 10

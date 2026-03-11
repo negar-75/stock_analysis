@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from stock_analysis.services.users.users import UserService
+from stock_analysis.services.users.users_service import UserService
 from stock_analysis.core.exceptions import (
     UserAlreadyExistsError,
     InvalidCredentialError,

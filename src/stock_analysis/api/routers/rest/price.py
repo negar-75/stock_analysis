@@ -9,15 +9,15 @@ from typing import Annotated
 from fastapi import APIRouter, Query
 
 from stock_analysis.schemas.price import DailyPriceLiveInput, DailyPriceLiveResponse
-from stock_analysis.services.price.live_analyzer import OnDemandAnalysisService
+from stock_analysis.services.price.historical_service import OnDemandAnalysisService
 
 
 
 router = APIRouter()
 
 
-@router.get("/", response_model=DailyPriceLiveResponse)
-async def get_prices(
+@router.get("/historical", response_model=DailyPriceLiveResponse)
+async def get_historical_prices(
     params: Annotated[DailyPriceLiveInput, Query()],
 ) -> DailyPriceLiveResponse:
     """
@@ -26,3 +26,5 @@ async def get_prices(
     Returns live analysis with technical indicators (returns, volatility, etc.).
     """
     return await OnDemandAnalysisService().get_price(params)
+
+

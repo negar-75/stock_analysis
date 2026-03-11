@@ -2,7 +2,7 @@ from .services import OnDemandAnalysisService
 from .repositories import UserRepository
 from .api import (
     get_db,
-    get_prices,
+    get_historical_prices,
 )
 from .db import engine, SessionLocal, Base, User
 from .pipelines import (
@@ -24,7 +24,7 @@ __all__ = [
     "OnDemandAnalysisService",
     "UserRepository",
     "get_db",
-    "get_prices",
+    "get_historical_prices",
     "engine",
     "SessionLocal",
     "Base",

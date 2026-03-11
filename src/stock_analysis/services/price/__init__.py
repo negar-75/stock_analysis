@@ -1,3 +1,3 @@
-from .live_analyzer import OnDemandAnalysisService
+from .historical_service import OnDemandAnalysisService
 
 __all__ = ["OnDemandAnalysisService"]

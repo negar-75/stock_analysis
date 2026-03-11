@@ -16,3 +16,5 @@ redis
 asyncpg
 pydantic_settings
 alembic
+asyncio
+websocket
