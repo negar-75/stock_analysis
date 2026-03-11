@@ -51,6 +51,7 @@ services:
       RATE_LIMIT: 10
       RATE_LIMIT_WINDOW: 90
       ALGORITHM: HS256
+      FINNHUB_API_KEY: ${FINNHUB_API_KEY}
   test:
     build:
       context: .
