@@ -15,9 +15,9 @@ class Settings(BaseSettings):
     algorithm: str
     rate_limit: int = 10
     rate_limit_window: int = 60
-    finnhub_api_key:str
+    finnhub_api_key: str
 
-    model_config = SettingsConfigDict(env_file=BASE_DIR / ".env",case_sensitive=False)
+    model_config = SettingsConfigDict(env_file=BASE_DIR / ".env", case_sensitive=False)
 
     @property
     def database_url(self) -> str:

@@ -12,7 +12,6 @@ from stock_analysis.schemas.price import DailyPriceLiveInput, DailyPriceLiveResp
 from stock_analysis.services.price.historical_service import OnDemandAnalysisService
 
 
-
 router = APIRouter()
 
 
@@ -26,5 +25,3 @@ async def get_historical_prices(
     Returns live analysis with technical indicators (returns, volatility, etc.).
     """
     return await OnDemandAnalysisService().get_price(params)
-
-

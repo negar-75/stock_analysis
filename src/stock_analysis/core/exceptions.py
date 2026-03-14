@@ -43,3 +43,22 @@ class UserNotFound(Exception):
     """Raised when a requested user does not exist."""
 
     pass
+
+
+# --------- AI Exceptions ----------
+
+
+class AISerivceError(Exception):
+    pass
+
+
+class AIServiceUnavailable(AISerivceError):
+    pass
+
+
+class AIRateLimitError(AISerivceError):
+    pass
+
+
+class AIResponseValidation(AISerivceError):
+    pass

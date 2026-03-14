@@ -4,7 +4,7 @@ from .price import (
     DailyPriceLiveResponse,
     DailyPriceResponse,
 )
-
+from .analysis import StockInsightResponse, AnalysisRequest
 
 __all__ = [
     "UserBaseModel",
@@ -14,4 +14,6 @@ __all__ = [
     "DailyPriceLiveInput",
     "DailyPriceLiveResponse",
     "DailyPriceResponse",
+    "StockInsightResponse",
+    "AnalysisRequest",
 ]
