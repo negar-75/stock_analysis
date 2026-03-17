@@ -2,14 +2,14 @@ import websockets
 import asyncio
 from websockets.exceptions import ConnectionClosed, WebSocketException
 import json
-from stock_analysis.core.config import settings
+from stock_analysis.core.config import get_settings
 
 
 class RealTimeMarketSerive:
     URL = "wss://ws.finnhub.io"
 
     def __init__(self) -> None:
-        self.api_key = settings.finnhub_api_key
+        self.api_key = get_settings().finnhub_api_key
 
     async def subscribe(self, symbol: str):
 

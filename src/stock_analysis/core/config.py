@@ -1,3 +1,4 @@
+from functools import lru_cache
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
 
@@ -17,7 +18,7 @@ class Settings(BaseSettings):
     rate_limit_window: int = 60
     finnhub_api_key: str
 
-    model_config = SettingsConfigDict(env_file=BASE_DIR / ".env", case_sensitive=False)
+    model_config = SettingsConfigDict(case_sensitive=False)
 
     @property
     def database_url(self) -> str:
@@ -28,4 +29,6 @@ class Settings(BaseSettings):
         )
 
 
-settings = Settings()
+@lru_cache
+def get_settings(env_file: str = ".env") -> Settings:
+    return Settings(_env_file=env_file)

@@ -14,7 +14,9 @@ class UserBaseModel(BaseModel):
     user_name: Optional[str]
     email: Optional[EmailStr]
     phone: Optional[str]
-    model_config = ConfigDict(from_attributes=True)
+    model_config = ConfigDict(
+        from_attributes=True, json_encoders={SecretStr: lambda v: v.get_secret_value()}
+    )
 
 
 class PasswordValidationMixin:

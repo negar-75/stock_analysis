@@ -19,3 +19,5 @@ alembic
 asyncio
 websocket
 openai
+pytest-asyncio
+httpx
