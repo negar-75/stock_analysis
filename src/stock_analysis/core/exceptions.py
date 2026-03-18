@@ -48,17 +48,25 @@ class UserNotFound(Exception):
 # --------- AI Exceptions ----------
 
 
-class AISerivceError(Exception):
+class AIServiceError(Exception):
+    """Base exception for AI service errors."""
+
     pass
 
 
-class AIServiceUnavailable(AISerivceError):
+class AIServiceUnavailable(AIServiceError):
+    """Raised when the AI service is unavailable."""
+
     pass
 
 
-class AIRateLimitError(AISerivceError):
+class AIRateLimitError(AIServiceError):
+    """Raised when AI API rate limit is exceeded."""
+
     pass
 
 
-class AIResponseValidation(AISerivceError):
+class AIResponseValidation(AIServiceError):
+    """Raised when AI response fails schema validation."""
+
     pass

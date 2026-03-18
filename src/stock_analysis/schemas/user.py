@@ -1,26 +1,19 @@
-from pydantic import (
-    BaseModel,
-    EmailStr,
-    SecretStr,
-    field_validator,
-    ConfigDict,
-)
 from typing import Optional
-from pydantic_core.core_schema import ValidationInfo
 from uuid import UUID
+
+from pydantic import BaseModel, ConfigDict, EmailStr, SecretStr, field_validator
+from pydantic_core.core_schema import ValidationInfo
 
 
 class UserBaseModel(BaseModel):
-    user_name: Optional[str]
-    email: Optional[EmailStr]
-    phone: Optional[str]
-    model_config = ConfigDict(
-        from_attributes=True, json_encoders={SecretStr: lambda v: v.get_secret_value()}
-    )
+    user_name: Optional[str] = None
+    email: Optional[EmailStr] = None
+    phone: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
 
 
 class PasswordValidationMixin:
-
     @field_validator("new_password", "password_1", check_fields=False)
     @classmethod
     def password_validation(cls, v: SecretStr):
@@ -44,8 +37,7 @@ class UserCreate(UserBaseModel, PasswordValidationMixin):
 
     @field_validator("password_2")
     @classmethod
-    def passwords_match(cls, v, info: ValidationInfo):
-
+    def passwords_match(cls, v: SecretStr, info: ValidationInfo) -> SecretStr:
         if (
             "password_1" in info.data
             and v.get_secret_value() != info.data["password_1"].get_secret_value()
@@ -55,7 +47,6 @@ class UserCreate(UserBaseModel, PasswordValidationMixin):
 
 
 class UserUpdatePassword(BaseModel, PasswordValidationMixin):
-
     old_password: SecretStr
     new_password: SecretStr
 

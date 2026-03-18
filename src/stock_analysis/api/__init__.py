@@ -1,4 +1,4 @@
-from .dependencies import get_db, get_current_user, get_user_service
+from .dependencies import get_session, get_current_user, get_user_service
 
 from .routers.rest import (
     get_historical_prices,
@@ -10,7 +10,7 @@ from .routers.rest import (
 )
 
 __all__ = [
-    "get_db",
+    "get_session",
     "get_historical_prices",
     "get_current_user",
     "get_user_service",

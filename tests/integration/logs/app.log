@@ -1,0 +1,94 @@
+2026-03-17 16:39:02,462 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-17 16:39:02,464 | INFO | httpx | HTTP Request: POST http://testserver/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-17 16:39:02,464 | ERROR | sqlalchemy.pool.impl.AsyncAdaptedQueuePool | Exception closing connection <AdaptedConnection <asyncpg.connection.Connection object at 0x13da9d300>>
+RuntimeError: Task <Task pending name='Task-10' coro=<_wrap_asyncgen_fixture.<locals>._asyncgen_fixture_wrapper.<locals>.finalizer.<locals>.async_finalizer() running at /opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/pytest_asyncio/plugin.py:322> cb=[_run_until_complete_cb() at /opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py:181]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 374, in _close_connection
+    self._dialect.do_close(connection)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 720, in do_close
+    dbapi_connection.close()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 898, in close
+    self.await_(self._connection.close())
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+    await self._protocol.close(timeout)
+  File "asyncpg/protocol/protocol.pyx", line 640, in close
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 825, in abort
+    self._force_close(None)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2026-03-17 16:40:43,768 | INFO | httpx | HTTP Request: POST http://testserver/api/v1/user/ "HTTP/1.1 409 Conflict"
+2026-03-17 16:40:43,809 | ERROR | sqlalchemy.pool.impl.AsyncAdaptedQueuePool | Exception closing connection <AdaptedConnection <asyncpg.connection.Connection object at 0x134f09300>>
+RuntimeError: Task <Task pending name='Task-10' coro=<_wrap_asyncgen_fixture.<locals>._asyncgen_fixture_wrapper.<locals>.finalizer.<locals>.async_finalizer() running at /opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/pytest_asyncio/plugin.py:322> cb=[_run_until_complete_cb() at /opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py:181]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 374, in _close_connection
+    self._dialect.do_close(connection)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 720, in do_close
+    dbapi_connection.close()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 898, in close
+    self.await_(self._connection.close())
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+    await self._protocol.close(timeout)
+  File "asyncpg/protocol/protocol.pyx", line 640, in close
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 825, in abort
+    self._force_close(None)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2026-03-17 16:41:23,204 | INFO | httpx | HTTP Request: POST http://testserver/api/v1/user/ "HTTP/1.1 409 Conflict"
+2026-03-17 16:41:23,250 | ERROR | sqlalchemy.pool.impl.AsyncAdaptedQueuePool | Exception closing connection <AdaptedConnection <asyncpg.connection.Connection object at 0x15bc05210>>
+RuntimeError: Task <Task pending name='Task-10' coro=<_wrap_asyncgen_fixture.<locals>._asyncgen_fixture_wrapper.<locals>.finalizer.<locals>.async_finalizer() running at /opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/pytest_asyncio/plugin.py:322> cb=[_run_until_complete_cb() at /opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py:181]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 374, in _close_connection
+    self._dialect.do_close(connection)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 720, in do_close
+    dbapi_connection.close()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 898, in close
+    self.await_(self._connection.close())
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+    await self._protocol.close(timeout)
+  File "asyncpg/protocol/protocol.pyx", line 640, in close
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 825, in abort
+    self._force_close(None)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed

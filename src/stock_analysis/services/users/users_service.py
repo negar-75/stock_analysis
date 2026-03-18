@@ -9,7 +9,6 @@ from uuid import UUID
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-
 from stock_analysis.core.exceptions import InvalidCredentialError, UserNotFound
 from stock_analysis.core.security import get_password_hash, verify_password
 from stock_analysis.repositories.user import UserRepository

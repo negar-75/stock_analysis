@@ -358,3 +358,607 @@ TypeError: Object of type date is not JSON serializable
 2026-03-06 16:00:29,626 | INFO | stock_analysis.services.price.live_analyzer | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
 2026-03-06 16:00:29,629 | INFO | stock_analysis.services.price.live_analyzer | key found | ticker=AAPL | 2025-01-01 → 2025-01-31 
 2026-03-06 16:03:06,342 | INFO | stock_analysis.services.users.users | User string1 created
+2026-03-17 08:46:59,284 | INFO | stock_analysis.services.Analysis.ai_analysis_service | Stock analysis requested | ticker=AAPL start=2025-01-01 end=2025-01-31
+2026-03-17 08:46:59,285 | INFO | stock_analysis.services.Analysis.ai_analysis_service | Stock analysis completed | ticker=AAPL trend=TrendSignal.BULLISH risk=RiskLevel.MEDIUM
+2026-03-17 17:14:21,382 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 17:14:21,412 | INFO | httpx | HTTP Request: POST http://testserver/api/v1/user/ "HTTP/1.1 409 Conflict"
+2026-03-17 17:14:21,457 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 17:14:21,464 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 17:14:21,465 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 17:14:21,466 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 17:14:21,468 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 17:14:21,484 | ERROR | sqlalchemy.pool.impl.AsyncAdaptedQueuePool | Exception closing connection <AdaptedConnection <asyncpg.connection.Connection object at 0x1485e5f30>>
+RuntimeError: Task <Task pending name='Task-10' coro=<_wrap_asyncgen_fixture.<locals>._asyncgen_fixture_wrapper.<locals>.finalizer.<locals>.async_finalizer() running at /opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/pytest_asyncio/plugin.py:322> cb=[_run_until_complete_cb() at /opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py:181]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 374, in _close_connection
+    self._dialect.do_close(connection)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 720, in do_close
+    dbapi_connection.close()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 898, in close
+    self.await_(self._connection.close())
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+    await self._protocol.close(timeout)
+  File "asyncpg/protocol/protocol.pyx", line 640, in close
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 825, in abort
+    self._force_close(None)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2026-03-17 17:18:49,996 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 17:18:50,339 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 17:18:50,343 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 17:18:50,344 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 17:18:50,345 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 17:18:50,346 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 17:18:50,362 | ERROR | sqlalchemy.pool.impl.AsyncAdaptedQueuePool | Exception closing connection <AdaptedConnection <asyncpg.connection.Connection object at 0x13b351f30>>
+RuntimeError: Task <Task pending name='Task-10' coro=<_wrap_asyncgen_fixture.<locals>._asyncgen_fixture_wrapper.<locals>.finalizer.<locals>.async_finalizer() running at /opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/pytest_asyncio/plugin.py:322> cb=[_run_until_complete_cb() at /opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py:181]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 374, in _close_connection
+    self._dialect.do_close(connection)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 720, in do_close
+    dbapi_connection.close()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 898, in close
+    self.await_(self._connection.close())
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+    await self._protocol.close(timeout)
+  File "asyncpg/protocol/protocol.pyx", line 640, in close
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 825, in abort
+    self._force_close(None)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2026-03-17 17:20:21,977 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 17:20:22,321 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 17:20:22,325 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 17:20:22,326 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 17:20:22,327 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 17:20:22,328 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 17:20:22,344 | ERROR | sqlalchemy.pool.impl.AsyncAdaptedQueuePool | Exception closing connection <AdaptedConnection <asyncpg.connection.Connection object at 0x11fd55f30>>
+RuntimeError: Task <Task pending name='Task-10' coro=<_wrap_asyncgen_fixture.<locals>._asyncgen_fixture_wrapper.<locals>.finalizer.<locals>.async_finalizer() running at /opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/pytest_asyncio/plugin.py:322> cb=[_run_until_complete_cb() at /opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py:181]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 374, in _close_connection
+    self._dialect.do_close(connection)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 720, in do_close
+    dbapi_connection.close()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 898, in close
+    self.await_(self._connection.close())
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+    await self._protocol.close(timeout)
+  File "asyncpg/protocol/protocol.pyx", line 640, in close
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 825, in abort
+    self._force_close(None)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/selector_events.py", line 895, in _force_close
+    self._loop.call_soon(self._call_connection_lost, exc)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2026-03-17 17:24:16,201 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 17:24:16,566 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 17:24:16,571 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 17:24:16,572 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 17:24:16,573 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 17:24:16,575 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 17:25:31,191 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 17:25:31,653 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 17:25:31,659 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 17:25:31,660 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 17:25:31,661 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 17:25:31,663 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 17:29:34,957 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 17:29:35,281 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 17:29:35,286 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 17:29:35,287 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 17:29:35,288 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 17:29:35,290 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:34:28,178 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:34:28,201 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:34:28,207 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:34:28,207 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:34:28,209 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:34:28,210 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:35:01,746 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:35:01,777 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:35:01,782 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:35:01,783 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:35:01,784 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:35:01,786 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:35:30,002 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:35:30,031 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:35:30,036 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:35:30,037 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:35:30,038 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:35:30,040 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:35:55,641 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:35:55,679 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:35:55,685 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:35:55,685 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:35:55,687 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:35:55,688 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:37:42,996 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:37:43,333 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:37:43,338 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:37:43,339 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:37:43,340 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:37:43,342 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:42:58,582 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:42:58,913 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:42:58,918 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:42:58,918 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:42:58,920 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:42:58,921 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:45:48,248 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:45:48,577 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:45:48,584 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:45:48,585 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:45:48,586 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:45:48,588 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:48:17,079 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:48:17,417 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:48:17,422 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:48:17,423 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:48:17,424 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:48:17,426 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:51:41,592 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:51:41,926 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:51:41,931 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:51:41,932 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:51:41,933 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:51:41,935 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 18:53:53,431 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 18:53:53,808 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 18:53:53,813 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 18:53:53,814 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 18:53:53,815 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 18:53:53,817 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 19:15:26,768 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 19:15:26,770 | INFO | httpx | HTTP Request: POST http://test/api/v1/user "HTTP/1.1 307 Temporary Redirect"
+2026-03-17 19:15:26,817 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 19:15:26,827 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 19:15:26,829 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 19:15:26,831 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 19:15:26,833 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 19:15:45,917 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 19:15:45,918 | INFO | httpx | HTTP Request: POST http://test/api/v1/user "HTTP/1.1 307 Temporary Redirect"
+2026-03-17 19:15:45,963 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 19:15:45,973 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 19:15:45,974 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 19:15:45,976 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 19:15:45,979 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 19:16:38,563 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 19:16:38,876 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 19:16:38,885 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 19:16:38,886 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 19:16:38,888 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 19:16:38,891 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 19:16:57,022 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 19:16:57,331 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 19:16:57,341 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 19:16:57,342 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 19:16:57,344 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 19:16:57,346 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 19:19:16,001 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 19:19:16,307 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 19:19:16,312 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 19:19:16,313 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 19:19:16,314 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 19:19:16,316 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 19:19:28,180 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 19:19:28,476 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 19:19:28,481 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 19:19:28,482 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 19:19:28,483 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 19:19:28,485 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 19:21:33,196 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 19:21:33,510 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 19:21:33,515 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 19:21:33,516 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 19:21:33,517 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 19:21:33,519 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 19:21:33,535 | ERROR | asyncio | Future exception was never retrieved
+future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+Traceback (most recent call last):
+  File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+2026-03-17 20:15:53,631 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 20:15:53,941 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 20:15:53,946 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 20:15:53,947 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 20:15:53,948 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 20:15:53,950 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 20:15:53,967 | ERROR | asyncio | Future exception was never retrieved
+future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+Traceback (most recent call last):
+  File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+2026-03-17 20:16:04,940 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 20:16:05,238 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 20:16:05,243 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 20:16:05,244 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 20:16:05,246 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 20:16:05,247 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 20:16:05,264 | ERROR | asyncio | Future exception was never retrieved
+future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+Traceback (most recent call last):
+  File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+2026-03-17 20:27:06,736 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 20:27:07,047 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 20:27:07,053 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 20:27:07,054 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 20:27:07,055 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 20:27:07,057 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 20:27:07,072 | ERROR | asyncio | Future exception was never retrieved
+future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+Traceback (most recent call last):
+  File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+2026-03-17 20:28:03,075 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 20:28:03,376 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 20:28:03,383 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 20:28:03,383 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 20:28:03,385 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 20:28:03,387 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 20:28:03,403 | ERROR | asyncio | Future exception was never retrieved
+future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+Traceback (most recent call last):
+  File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+2026-03-17 20:32:11,326 | INFO | stock_analysis.services.price.historical_service | Redis check | ticker=AAPL | 2025-01-01 → 2025-01-31 
+2026-03-17 20:32:11,332 | INFO | stock_analysis.services.price.historical_service | Fetching market data | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-17 20:32:11,979 | INFO | stock_analysis.pipelines.ingestions.market_api | Fetched 19 records for AAPL
+2026-03-17 20:32:11,980 | INFO | stock_analysis.pipelines.ingestions.market_api | Ingestion complete: 19 records for AAPL
+2026-03-17 20:32:11,981 | INFO | stock_analysis.services.price.historical_service | Fetched rows=19 | ticker=AAPL | 2025-01-01 → 2025-01-31
+2026-03-17 20:33:15,194 | INFO | stock_analysis.services.users.users_service | User negar created
+2026-03-17 21:17:32,242 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 21:17:32,249 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 21:17:32,259 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 21:17:32,260 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 21:17:32,264 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 21:17:32,267 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 21:18:32,446 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 21:18:32,750 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 21:18:32,756 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 21:18:32,757 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 21:18:32,758 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 21:18:32,760 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 21:19:09,664 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 21:19:09,971 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 21:19:09,977 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 21:19:09,978 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 21:19:09,979 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 21:19:09,981 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-17 21:24:47,520 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-17 21:24:47,841 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-17 21:24:47,846 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-17 21:24:47,847 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-17 21:24:47,848 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-17 21:24:47,850 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 07:48:00,864 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 07:48:00,884 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 07:48:00,886 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 07:48:00,896 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 07:48:00,904 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 07:48:04,623 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 07:48:45,148 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 07:48:45,149 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 07:48:54,018 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 07:48:54,409 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 07:48:54,411 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 07:48:54,424 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 07:48:54,437 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 07:48:54,439 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 07:48:54,448 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 07:48:54,540 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 07:49:18,400 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 07:49:18,944 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 07:49:18,959 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 07:49:18,962 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 07:49:18,971 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 07:49:18,980 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 07:49:58,272 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 07:49:58,670 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 07:49:58,673 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 07:49:58,680 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 07:49:58,700 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 07:49:58,704 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 07:49:58,712 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 07:49:58,720 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 07:50:46,378 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 07:50:47,101 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 07:50:47,103 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 07:50:47,123 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 07:50:47,164 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 07:50:47,175 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 07:50:47,194 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 07:50:47,207 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 07:51:04,387 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 07:51:04,750 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 07:51:04,752 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 07:51:04,762 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 07:51:04,775 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 07:51:04,777 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 07:51:04,784 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 07:51:04,799 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 08:00:13,118 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 08:00:13,335 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 08:00:13,341 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 08:00:13,342 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 08:00:13,343 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 08:00:13,345 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 08:01:24,352 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 08:01:24,567 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 08:01:24,573 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 08:01:24,574 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 08:01:24,575 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 08:01:24,576 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 08:02:40,628 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 08:02:40,891 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 08:02:40,892 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 08:02:40,895 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 08:02:40,900 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 08:02:40,901 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 08:02:40,902 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 08:02:40,904 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 08:49:39,540 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 08:49:39,812 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 08:49:39,812 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 08:49:39,816 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 08:49:39,822 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 08:49:39,822 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 08:49:39,823 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 08:49:39,825 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 09:00:31,495 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 09:00:31,760 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 09:00:31,761 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 09:00:31,765 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 09:00:31,771 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 09:00:31,771 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 09:00:31,773 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 09:00:31,774 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 09:25:33,905 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 09:25:34,163 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 09:25:34,164 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 09:25:34,169 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 09:25:34,174 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 09:25:34,175 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 09:25:34,177 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 09:25:34,178 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 09:29:46,571 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 09:29:46,865 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 09:29:46,866 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 09:29:46,868 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 09:29:46,874 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 09:29:46,875 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 09:29:46,876 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 09:29:46,878 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 09:34:32,090 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 09:34:32,094 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 09:34:32,100 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 09:34:32,101 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 09:34:32,102 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 09:34:32,110 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 09:34:58,384 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 09:34:58,386 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 09:34:58,392 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 09:34:58,393 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 09:34:58,394 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 09:34:58,396 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 09:35:07,101 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 09:35:07,367 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 09:35:07,369 | INFO | httpx | HTTP Request: POST http://test/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 09:35:07,372 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 09:35:07,376 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 09:35:07,377 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 09:35:07,378 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 09:35:07,380 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 10:09:13,686 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' does not exist
+2026-03-18 10:09:14,014 | INFO | stock_analysis.services.users.users_service | User testuser created
+2026-03-18 10:09:14,016 | INFO | httpx | HTTP Request: POST http://testserver/api/v1/user/ "HTTP/1.1 201 Created"
+2026-03-18 10:09:14,049 | ERROR | stock_analysis.pipelines.transformers.data_cleaner | Data conversion error: time data "abc" doesn't match format "%Y-%m-%d", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2026-03-18 10:09:14,056 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'Volume' does not exist
+2026-03-18 10:09:14,057 | WARNING | stock_analysis.pipelines.validators.data_validator | Data type is wrong in column 'Date', current type is object
+2026-03-18 10:09:14,058 | WARNING | stock_analysis.pipelines.validators.data_validator | Column 'High' has null values
+2026-03-18 10:09:14,059 | ERROR | sqlalchemy.pool.impl.NullPool | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x121020b80>>
+Traceback (most recent call last):
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 372, in _close_connection
+    self._dialect.do_terminate(connection)
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1136, in do_terminate
+    dbapi_connection.terminate()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 925, in terminate
+    self._connection.terminate()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/asyncpg/connection.py", line 1524, in terminate
+    self._abort()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/site-packages/asyncpg/connection.py", line 1576, in _abort
+    self._protocol.abort()
+  File "asyncpg/protocol/protocol.pyx", line 597, in asyncpg.protocol.protocol.BaseProtocol.abort
+  File "asyncpg/protocol/protocol.pyx", line 696, in asyncpg.protocol.protocol.BaseProtocol._handle_waiter_on_connection_lost
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 762, in call_soon
+    self._check_closed()
+  File "/opt/miniconda3/envs/pythonproblem/lib/python3.11/asyncio/base_events.py", line 520, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+2026-03-18 10:09:14,062 | ERROR | sqlalchemy.pool.impl.NullPool | The garbage collector is trying to clean up non-checked-in connection <AdaptedConnection <asyncpg.connection.Connection object at 0x121020b80>>, which will be terminated.  Please ensure that SQLAlchemy pooled connections are returned to the pool explicitly, either by calling ``close()`` or by using appropriate context managers to manage their lifecycle.
+2026-03-18 10:09:14,065 | WARNING | stock_analysis.pipelines.validators.data_validator | Low is not the minimum price in the row
+2026-03-18 17:10:27,321 | INFO | stock_analysis.services.Analysis.ai_analysis_service | Stock analysis requested | ticker=AAPL start=2025-01-01 end=2025-01-31
+2026-03-18 17:10:27,323 | INFO | stock_analysis.services.Analysis.ai_analysis_service | Stock analysis completed | ticker=AAPL trend=TrendSignal.BULLISH risk=RiskLevel.MEDIUM

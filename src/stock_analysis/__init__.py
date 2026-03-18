@@ -1,10 +1,10 @@
 from .services import OnDemandAnalysisService
 from .repositories import UserRepository
 from .api import (
-    get_db,
+    get_session,
     get_historical_prices,
 )
-from .db import engine, SessionLocal, Base, User
+from .db import get_engine, get_session_maker, Base, User
 from .pipelines import (
     data_validation,
     clean_data,
@@ -23,10 +23,10 @@ from .core import (
 __all__ = [
     "OnDemandAnalysisService",
     "UserRepository",
-    "get_db",
+    "get_session",
     "get_historical_prices",
-    "engine",
-    "SessionLocal",
+    "get_engine",
+    "get_session_maker",
     "Base",
     "User",
     "data_validation",

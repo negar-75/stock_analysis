@@ -1,12 +1,13 @@
 from uuid import UUID
-from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.exc import IntegrityError
 
-from stock_analysis.schemas.user import UserCreate
-from stock_analysis.db.models import User
-from stock_analysis.core.security import get_password_hash
+from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from stock_analysis.core.exceptions import UserAlreadyExistsError
+from stock_analysis.core.security import get_password_hash
+from stock_analysis.db.models import User
+from stock_analysis.schemas.user import UserCreate
 
 
 class UserRepository:

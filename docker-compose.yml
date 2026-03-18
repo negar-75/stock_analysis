@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: stock_user
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "5432:5432"
+      - "5433:5432"
   db_test:
     image: postgres:15
     container_name: stock_db_test
@@ -19,7 +19,7 @@ services:
       POSTGRES_USER: stock_user_test
       POSTGRES_PASSWORD: 1234
     ports:
-      - "5433:5432"
+      - "5434:5432"
   redis:
     image: redis:6.2-alpine
     restart: always
@@ -52,6 +52,7 @@ services:
       RATE_LIMIT_WINDOW: 90
       ALGORITHM: HS256
       FINNHUB_API_KEY: ${FINNHUB_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
   test:
     build:
       context: .
@@ -61,7 +62,7 @@ services:
       - redis
     environment:
       POSTGRES_HOST: db_test
-      POSTGRES_PORT: 5433
+      POSTGRES_PORT: 5432
       ALGORITHM: HS256
       REDIS_URL: redis://redis:6379/0
       RATE_LIMIT: 10
@@ -71,5 +72,6 @@ services:
       POSTGRES_DB: stock_analysis_test
       POSTGRES_USER: stock_user_test
       FINNHUB_API_KEY: ${FINNHUB_API_KEY}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
 volumes:
   cache:

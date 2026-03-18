@@ -7,26 +7,25 @@ Provides JWT-based user authentication via Bearer token.
 import os
 from uuid import UUID
 
-from fastapi import Depends, HTTPException
-from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 import jwt
 from dotenv import load_dotenv
+from fastapi import Depends, HTTPException
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
+
+from stock_analysis.db.models.user import User
+from stock_analysis.services.users.users_service import UserService
 
 from .common import get_user_service
-from stock_analysis.services.users.users_service import UserService
-from stock_analysis.db.models.user import User
-
 
 load_dotenv()
 
-security = HTTPBearer()
-
+_security = HTTPBearer()
 SECRET_KEY = os.environ["SECRET_KEY"]
 ALGORITHM = os.environ.get("ALGORITHM", "HS256")
 
 
 async def get_current_user(
-    credentials: HTTPAuthorizationCredentials = Depends(security),
+    credentials: HTTPAuthorizationCredentials = Depends(_security),
     service: UserService = Depends(get_user_service),
 ) -> User:
     """

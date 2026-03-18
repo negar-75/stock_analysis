@@ -1,20 +1,17 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from stock_analysis.services.users.users_service import UserService
-from stock_analysis.core.exceptions import (
-    UserAlreadyExistsError,
-    InvalidCredentialError,
-)
+from stock_analysis.api.dependencies import get_current_user, get_user_service
+from stock_analysis.core.exceptions import InvalidCredentialError, UserAlreadyExistsError
 from stock_analysis.core.security import create_access_token
+from stock_analysis.db.models.user import User
 from stock_analysis.schemas.user import (
     UserCreate,
-    UserResponse,
     UserLoginRequest,
     UserLoginResponse,
+    UserResponse,
     UserUpdatePassword,
 )
-from stock_analysis.api.dependencies import get_current_user, get_user_service
-from stock_analysis.db.models.user import User
+from stock_analysis.services.users.users_service import UserService
 
 router = APIRouter()
 

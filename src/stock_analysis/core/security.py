@@ -60,5 +60,4 @@ def get_password_hash(password: str) -> str:
     Returns:
         The bcrypt-hashed password as a string.
     """
-    print(type(password))
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()

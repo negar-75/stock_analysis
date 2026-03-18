@@ -1,7 +1,9 @@
+import logging
+
+import openai
 from openai import OpenAI
 from pydantic import ValidationError
-import logging
-import openai
+
 from stock_analysis.schemas.analysis import (
     AnalysisRequest,
     StockInsightResponse,
@@ -103,15 +105,3 @@ class AIAnalysisService:
                 "considered investment advice. Stock investments involve risk."
             ),
         )
-
-
-# start_date = date(2025, 1, 1)
-# end_date = date(2025, 1, 31)
-
-# request = AnalysisRequest(ticker="AAPL", start_date=start_date, end_date=end_date)
-
-# print(request)
-
-# test = AIAnalysisService()
-# result = test.analyze_stock(request)
-# print(result.model_dump_json(indent=2))
