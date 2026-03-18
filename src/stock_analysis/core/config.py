@@ -15,6 +15,7 @@ class Settings(BaseSettings):
     rate_limit: int = 10
     rate_limit_window: int = 60
     finnhub_api_key: str
+    openai_api_key:str
 
     model_config = SettingsConfigDict(case_sensitive=False)
 
