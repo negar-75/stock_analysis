@@ -21,3 +21,4 @@ websocket
 openai
 pytest-asyncio
 httpx
+phonenumbers

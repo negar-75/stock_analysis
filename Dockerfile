@@ -9,6 +9,7 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 
 COPY pyproject.toml .
+COPY pytest.ini .
 COPY requirements.txt .
 COPY alembic.ini .
 COPY migrations/ migrations/

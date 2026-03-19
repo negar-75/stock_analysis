@@ -1,14 +1,13 @@
-import os
 import asyncio
-
+import os
 import pandas as pd
 import pytest
 import pytest_asyncio
 from dotenv import load_dotenv
 from fastapi import Request
-from fastapi.testclient import TestClient
 from httpx import AsyncClient, ASGITransport
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from sqlalchemy.pool import NullPool
 
 from stock_analysis.main import app
 from stock_analysis.db import Base
@@ -17,79 +16,81 @@ from stock_analysis.api.dependencies.rate_limiter import rate_limiter
 
 load_dotenv(".env.test")
 
-# Build URL: TEST_DATABASE_URL > POSTGRES_* (Docker/CI when host is service name) > default
-if os.getenv("TEST_DATABASE_URL"):
-    DATABASE_URL = os.getenv("TEST_DATABASE_URL")
-elif os.getenv("POSTGRES_HOST") and os.getenv("POSTGRES_HOST") not in ("localhost", "127.0.0.1"):
-    # Docker/CI: POSTGRES_HOST is service name (e.g. db_test)
+if os.getenv("POSTGRES_HOST") and os.getenv("POSTGRES_HOST") not in (
+    "localhost",
+    "127.0.0.1",
+):
     host = os.getenv("POSTGRES_HOST")
-    port = os.getenv("POSTGRES_PORT", "5434")
+    port = os.getenv("POSTGRES_PORT", "5432")
     db = os.getenv("POSTGRES_DB", "stock_analysis_test")
     user = os.getenv("POSTGRES_USER", "stock_user_test")
-    password = os.getenv("POSTGRES_PASSWORD", "1234")
+    password = os.getenv("POSTGRES_PASSWORD", "7648")
     DATABASE_URL = f"postgresql+asyncpg://{user}:{password}@{host}:{port}/{db}"
 else:
-    # Local: docker db_test on localhost:5433
-    DATABASE_URL = "postgresql+asyncpg://stock_user_test:1234@localhost:5433/stock_analysis_test"
-
-
-# ── Engine (function-scoped to avoid event loop conflicts) ─────────────────────
-@pytest_asyncio.fixture(scope="function")
-async def engine():
-    from sqlalchemy.pool import NullPool
-    _engine = create_async_engine(
-        DATABASE_URL,
-        echo=False,
-        poolclass=NullPool,  # No pooling to avoid connection state issues
+    DATABASE_URL = (
+        "postgresql+asyncpg://stock_user_test:7648@localhost:5432/stock_analysis_test"
     )
+
+
+@pytest.fixture(scope="session")
+def event_loop():
+    """Session-scoped event loop so asyncpg connections stay on one loop (Docker/CI)."""
+    policy = asyncio.get_event_loop_policy()
+    loop = policy.new_event_loop()
+    yield loop
+    loop.close()
+
+
+@pytest_asyncio.fixture(scope="session")
+async def engine():
+    # NullPool prevents connection reuse across async operations, avoiding
+    # "another operation is in progress" errors with asyncpg in Docker/CI.
+    _engine = create_async_engine(DATABASE_URL, echo=False, poolclass=NullPool)
     yield _engine
     await _engine.dispose()
 
 
-# ── Create / drop tables (function-scoped, per-test isolation) ────────────────
-@pytest_asyncio.fixture(scope="function")
+@pytest_asyncio.fixture(scope="session")
 async def setup_db(engine):
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     yield
+    
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
 
 
-# ── Per-test session (fresh connection, no savepoints) ──────────────────────────
 @pytest_asyncio.fixture(scope="function")
 async def session(engine, setup_db):
-    async_session_factory = async_sessionmaker(
-        bind=engine,
-        expire_on_commit=False,
-    )
-    async with async_session_factory() as s:
-        yield s
-        # Cleanup: try to close gracefully, but suppress event loop errors
-        # These can occur when the session is used by TestClient (sync fixture)
-        try:
-            await s.close()
-        except RuntimeError as e:
-            if "different loop" not in str(e):
-                raise
+    async with engine.connect() as conn:
+        await conn.begin()
+        async_session = async_sessionmaker(
+            bind=conn,
+            expire_on_commit=False,
+            join_transaction_mode="create_savepoint",
+        )
+        async with async_session() as s:
+            yield s
+        await conn.rollback()
 
 
-# ── HTTP client with session injected ─────────────────────────────────────────
-@pytest.fixture(scope="function")
-def sync_client(session):
-    # Return the session directly instead of a generator to avoid event loop issues
-    def get_session_override():
-        return session
-    
-    def noop_rate_limiter(request: Request):
+@pytest_asyncio.fixture(scope="function")
+async def async_client(session):
+    async def override_get_session():
+        yield session
+
+    async def noop_rate_limiter(request: Request):
         pass
 
-    app.dependency_overrides[get_session] = get_session_override
+    app.dependency_overrides[get_session] = override_get_session
     app.dependency_overrides[rate_limiter] = noop_rate_limiter
 
-    client = TestClient(app)
-    yield client
-    
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://test",
+    ) as client:
+        yield client
+
     app.dependency_overrides.clear()
 
 
