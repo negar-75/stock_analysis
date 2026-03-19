@@ -1,8 +1,8 @@
 from typing import Optional
 from uuid import UUID
-
 from pydantic import BaseModel, ConfigDict, EmailStr, SecretStr, field_validator
 from pydantic_core.core_schema import ValidationInfo
+import phonenumbers
 
 
 class UserBaseModel(BaseModel):
@@ -27,8 +27,22 @@ class PasswordValidationMixin:
 
         return v
 
+class PhoneValidation:
+    @field_validator("phone")
+    @classmethod
+    def phone_validation(cls,v:str):
+        try:
+            parsed = phonenumbers.parse(v)
+            if not phonenumbers.is_valid_number(parsed):
+                raise ValueError("Invalid phone number")
+        except phonenumbers.NumberParseException:
+            raise ValueError("Invalid phone number format")
+        return v
+        
 
-class UserCreate(UserBaseModel, PasswordValidationMixin):
+
+
+class UserCreate(UserBaseModel, PasswordValidationMixin,PhoneValidation):
     user_name: str
     email: EmailStr
     phone: str
