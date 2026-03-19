@@ -100,6 +100,5 @@ class TestRangeFeature:
     def test_range_calculation(self, analyzed_data, feature, expected_formula, rows):
 
         expected = expected_formula(analyzed_data)
-        print(f"\n{feature}: {expected}")
 
         assert np.isclose(analyzed_data.loc[rows, feature], expected, atol=1e-8).all()
