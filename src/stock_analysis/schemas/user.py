@@ -71,6 +71,7 @@ class UserLoginRequest(BaseModel):
 
 
 class UserLoginResponse(BaseModel):
+    id: UUID
     access_token: str
     token_type: str = "bearer"
 

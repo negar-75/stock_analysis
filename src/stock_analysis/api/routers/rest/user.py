@@ -41,7 +41,7 @@ async def login(
 
         access_token = create_access_token({"sub": str(authenticated_user.id)})
 
-        return {"access_token": access_token}
+        return {"access_token": access_token, "id": authenticated_user.id}
 
     except InvalidCredentialError:
         raise HTTPException(status_code=401, detail="Invalid email or password")
