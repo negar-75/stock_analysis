@@ -74,4 +74,5 @@ async def delete_user(
     service: UserService = Depends(get_user_service),
     current_user: User = Depends(get_current_user),
 ):
+    
     await service.delete_user(current_user.id)
