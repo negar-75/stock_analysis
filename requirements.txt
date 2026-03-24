@@ -22,3 +22,5 @@ openai
 pytest-asyncio
 httpx
 phonenumbers
+pytest-mock
+python-jose
