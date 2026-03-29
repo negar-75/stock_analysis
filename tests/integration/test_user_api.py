@@ -217,5 +217,110 @@ async def test_login_missing_email(async_client: AsyncClient,test_user):
     reponse = await async_client.post("/api/v1/user/login" , json={"email":"test@example.com"})
     assert reponse.status_code == 422
     
+
+@pytest.mark.asyncio
+async def test_update_password_success(
+    async_client: AsyncClient,
+    test_user,
+    mocker,
+):
+    # Create a JWT token for the test user
+    from stock_analysis.core.security import create_access_token
     
+    access_token = create_access_token({"sub": str(test_user.id)})
+    
+    # Mock the password verification to return True (old password is correct)
+    mocker.patch(
+        "stock_analysis.services.users.users_service.verify_password",
+        return_value=True,
+    )
+
+    # Mock the password hashing function
+    mocker.patch(
+        "stock_analysis.services.users.users_service.get_password_hash",
+        return_value="new_hashed_password",
+    )
+
+    # Make the PATCH request with JWT token in Authorization header
+    response = await async_client.patch(
+        "/api/v1/user/me/password",
+        headers={"Authorization": f"Bearer {access_token}"},
+        json={
+            "old_password": "123456789012",
+            "new_password": "NewPassword123!",
+        },
+    )
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["email"] == test_user.email
+    assert data["user_name"] == test_user.user_name
+    assert "id" in data
+
+
+@pytest.mark.asyncio
+async def test_update_password_wrong_old_password(
+    async_client: AsyncClient,
+    test_user,
+    mocker,
+):
+    from stock_analysis.core.security import create_access_token
+    
+    access_token = create_access_token({"sub": str(test_user.id)})
+    
+    # Mock verify_password to return False (old password is incorrect)
+    mocker.patch(
+        "stock_analysis.services.users.users_service.verify_password",
+        return_value=False,
+    )
+
+    response = await async_client.patch(
+        "/api/v1/user/me/password",
+        headers={"Authorization": f"Bearer {access_token}"},
+        json={
+            "old_password": "WrongPassword123!",
+            "new_password": "NewPassword123!",
+        },
+    )
+
+    assert response.status_code == 401
+    assert response.json()["detail"] == "Old password is incorrect"
+
+
+@pytest.mark.asyncio
+async def test_update_password_weak_new_password(
+    async_client: AsyncClient,
+    test_user,
+    mocker,
+):
+    from stock_analysis.core.security import create_access_token
+    
+    access_token = create_access_token({"sub": str(test_user.id)})
+    
+    response = await async_client.patch(
+        "/api/v1/user/me/password",
+        headers={"Authorization": f"Bearer {access_token}"},
+        json={
+            "old_password": "123456789012",
+            "new_password": "weak",  # Too short, fails validation
+        },
+    )
+
+    assert response.status_code == 422
+
+
+@pytest.mark.asyncio
+async def test_update_password_no_auth_token(
+    async_client: AsyncClient,
+):
+    # Test without Authorization header (no token)
+    response = await async_client.patch(
+        "/api/v1/user/me/password",
+        json={
+            "old_password": "123456789012",
+            "new_password": "NewPassword123!",
+        },
+    )
+
+    assert response.status_code == 401 
 
