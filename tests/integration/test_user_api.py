@@ -322,5 +322,116 @@ async def test_update_password_no_auth_token(
         },
     )
 
-    assert response.status_code == 401 
+    assert response.status_code == 401
+
+
+# ==================== DELETE USER TESTS ====================
+
+@pytest.mark.asyncio
+async def test_delete_user_success(
+    async_client: AsyncClient,
+    test_user,
+):
+    """Test successful user deletion with valid JWT token"""
+    from stock_analysis.core.security import create_access_token
+    
+    access_token = create_access_token({"sub": str(test_user.id)})
+    
+    response = await async_client.delete(
+        "/api/v1/user/me",
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+
+    assert response.status_code == 204
+    assert response.content == b""
+
+
+@pytest.mark.asyncio
+async def test_delete_user_no_auth_token(
+    async_client: AsyncClient,
+):
+    """Test delete user without JWT token returns 401"""
+    response = await async_client.delete(
+        "/api/v1/user/me",
+    )
+
+    assert response.status_code == 401
+
+
+@pytest.mark.asyncio
+async def test_delete_user_invalid_token(
+    async_client: AsyncClient,
+):
+    """Test delete user with invalid JWT token returns 401"""
+    invalid_token = "invalid.jwt.token"
+    
+    response = await async_client.delete(
+        "/api/v1/user/me",
+        headers={"Authorization": f"Bearer {invalid_token}"},
+    )
+
+    assert response.status_code == 401
+
+
+@pytest.mark.asyncio
+async def test_delete_user_malformed_header(
+    async_client: AsyncClient,
+):
+    """Test delete user with malformed Authorization header"""
+    response = await async_client.delete(
+        "/api/v1/user/me",
+        headers={"Authorization": "NotBearerFormat"},
+    )
+
+    assert response.status_code == 401
+
+
+@pytest.mark.asyncio
+async def test_delete_user_twice(
+    async_client: AsyncClient,
+    test_user,
+):
+    """Test that deleting an already deleted user returns appropriate error"""
+    from stock_analysis.core.security import create_access_token
+    
+    access_token = create_access_token({"sub": str(test_user.id)})
+    
+    # First deletion - should succeed
+    response1 = await async_client.delete(
+        "/api/v1/user/me",
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+    assert response1.status_code == 204
+    
+    # Second deletion with same token - user no longer exists
+    response2 = await async_client.delete(
+        "/api/v1/user/me",
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+    assert response2.status_code in (401, 404)
+
+
+@pytest.mark.asyncio
+async def test_get_user_after_deletion(
+    async_client: AsyncClient,
+    test_user,
+):
+    """Test that getting user profile after deletion returns 401"""
+    from stock_analysis.core.security import create_access_token
+    
+    access_token = create_access_token({"sub": str(test_user.id)})
+    
+    # Delete the user
+    response_delete = await async_client.delete(
+        "/api/v1/user/me",
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+    assert response_delete.status_code == 204
+    
+    # Try to get user profile - should fail
+    response_get = await async_client.get(
+        "/api/v1/user/me",
+        headers={"Authorization": f"Bearer {access_token}"},
+    )
+    assert response_get.status_code in (401, 404) 
 
